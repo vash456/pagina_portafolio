@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Camila Torres — Programadora de Videojuegos</title>
+<title>Darlin Estrada Patiño — Portafolio</title>
 <meta name="description" content="Portafolio de proyectos de videojuegos: diseño, programación y desarrollo. Portafolio, sobre mí y CV.">
 
-<!-- EDITA: reemplaza "Camila Torres" en todo el archivo por tu nombre real -->
+<!-- EDITA: reemplaza "Darlin Estrada Patiño" en todo el archivo por tu nombre real -->
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2310121A'/%3E%3Cpath d='M8 20 L14 12 L18 17 L24 9' stroke='%23FFB648' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 
@@ -19,12 +19,15 @@
 <body>
 
 <div class="grid-overlay" aria-hidden="true"></div>
+<canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
 
 <header class="topbar">
-  <a class="brand" href="#" data-view="portfolio">
-    <span class="brand-mark">▸</span> Camila Torres
+  <a class="brand" href="#" data-view="portfolio" id="brandLink">
+    <span class="brand-mark">▸</span>
+    <span id="brandNameText">Darlin Estrada Patiño</span>
   </a>
   <nav class="menu" aria-label="Navegación principal">
+    <span class="menu-indicator" id="menuIndicator" aria-hidden="true"></span>
     <button class="menu-item is-active" data-view="portfolio" type="button">
       <span class="menu-cursor" aria-hidden="true">▸</span>Portafolio
     </button>
@@ -46,22 +49,23 @@
   <section class="view is-active" id="view-portfolio" data-view-panel="portfolio">
     <div class="hero">
       <div class="hero-inner">
-        <p class="eyebrow">// diseño de sistemas · programación de gameplay</p>
-        <h1 class="hero-title">Construyo mundos jugables,<br>un sistema a la vez.</h1>
-        <p class="hero-sub">Soy programadora y diseñadora de videojuegos. Aquí reúno los proyectos donde resuelvo problemas de jugabilidad, rendimiento y experiencia de jugador — desde arcades espaciales hasta simuladores económicos.</p>
+        <p class="eyebrow">// Desarrollo de videojuegos - Desarrollador de software</p>
+        <h1 class="hero-title" id="heroTitle">Construyo mundos jugables,<br>un sistema a la vez.</h1>
+        <p class="hero-sub">Soy programador y desarrollador de videojuegos. Aquí reúno los proyectos donde creo mecanicas de juego, resuelvo problemas de jugabilidad y experiencia de jugador.</p>
         <div class="hero-actions">
           <a href="#portfolio-grid" class="btn btn-primary">Ver proyectos</a>
+          <button class="btn btn-ghost" data-view="about" type="button">Acerca de mí</button>
           <button class="btn btn-ghost" data-view="cv" type="button">Ver CV</button>
         </div>
       </div>
       <div class="hero-stats" role="list">
         <div class="stat" role="listitem"><span class="stat-num" id="statProjects">04</span><span class="stat-label">proyectos publicados</span></div>
-        <div class="stat" role="listitem"><span class="stat-num">03</span><span class="stat-label">motores / stacks</span></div>
-        <div class="stat" role="listitem"><span class="stat-num">+2</span><span class="stat-label">años prototipando</span></div>
+        <div class="stat" role="listitem"><span class="stat-num" id="statEngines">03</span><span class="stat-label">motores / stacks</span></div>
+        <div class="stat" role="listitem"><span class="stat-num" id="statExperience">+4</span><span class="stat-label">años programando</span></div>
       </div>
     </div>
 
-    <div class="section-head" id="portfolio-grid">
+    <div class="section-head reveal" id="portfolio-grid">
       <h2>Portafolio</h2>
       <p>Cada proyecto incluye tema, mecánicas, stack técnico y el problema de diseño o programación que buscaba resolver.</p>
     </div>
@@ -79,28 +83,21 @@
   <section class="view" id="view-about" data-view-panel="about">
     <div class="page-head">
       <p class="eyebrow">// jugador desde antes de saber leer</p>
-      <h1>Acerca de mí</h1>
+      <h1 class="hero-title">Acerca de mí</h1>
     </div>
 
     <div class="about-layout">
-      <div class="about-portrait" aria-hidden="true">
-        <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
-          <rect width="320" height="320" rx="18" fill="#1A1D29"/>
-          <circle cx="160" cy="130" r="62" fill="#23273A"/>
-          <circle cx="160" cy="120" r="48" fill="#2E3350"/>
-          <path d="M60 300 C60 220 120 200 160 200 C200 200 260 220 260 300 Z" fill="#2E3350"/>
-          <circle cx="160" cy="120" r="48" fill="none" stroke="#FFB648" stroke-width="2" stroke-dasharray="4 6"/>
-          <text x="160" y="126" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="#FFB648">CT</text>
-        </svg>
-        <p class="portrait-caption">/* reemplaza esto por tu foto en assets/img/perfil.jpg */</p>
+      <div class="about-portrait reveal" aria-hidden="true">
+        <img src="assets/cv/foto_perfil.png" alt="Foto de perfil" class="portrait-image" />
+        <p class="portrait-caption"></p>
       </div>
 
-      <div class="about-copy">
-        <p><strong>Empecé a programar por accidente:</strong> a los doce años quería modificar el mapa de un juego de estrategia y terminé abriendo un editor de texto sin saber que ese era el primer paso de mi carrera. Nunca lo solté.</p>
+      <div class="about-copy reveal">
+        <p>Mi camino en la tecnología empezó desarmando juguetes para entender cómo funcionaban por dentro y pasando horas frente a la pantalla descifrando como avanzar en mis videojuegos favoritos. Esa curiosidad de la infancia se convirtió en mi profesión: hoy ya no solo juego los mundos de otros, sino que diseño la lógica y las mecánicas que los hacen cobrar vida.</p>
 
-        <p>Estudié Ingeniería de Software y desde entonces he combinado el desarrollo con el diseño de sistemas de juego: mecánicas, economías, inteligencia artificial y todo lo que hace que un mundo virtual se sienta vivo. Me interesa especialmente el momento exacto en que una regla de código se convierte en una sensación para quien juega.</p>
+        <p>Como desarrollador de software en transición hacia la industria de los videojuegos con Unity y C#, aporto una base sólida en programación orientada a objetos, arquitectura limpia y buenas prácticas de desarrollo. Mi enfoque combina el pensamiento analítico y la rigurosidad técnica con la creatividad necesaria para diseñar mecánicas de juego inmersivas, fluidas y desafiantes. Me destaco por mi capacidad de adaptación tecnológica, comunicación efectiva y un fuerte espíritu de trabajo colaborativo.</p>
 
-        <p>Fuera del teclado, colecciono cartuchos de consolas antiguas, juego jams de fin de semana con amigos y llevo un cuaderno de mecánicas «raras» que algún día quiero prototipar. Creo que los mejores juegos nacen de restricciones claras — por eso disfruto tanto los game jams como los sistemas de producción real.</p>
+        <p>Fuera del código, me encuentras haciendo deporte, recorriendo rutas en moto o compartiendo partidas online con amigos el fin de semana. Como jugador y creador, creo que los mejores juegos son los que tienen una dificultad que desafía pero no frustra.</p>
 
         <h3>Cómo trabajo</h3>
         <ul class="about-list">
@@ -111,11 +108,11 @@
 
         <h3>Fuera de pantalla</h3>
         <div class="chip-row">
-          <span class="chip">Game jams</span>
-          <span class="chip">Pixel art</span>
-          <span class="chip">Narrativa interactiva</span>
-          <span class="chip">Speedruns</span>
-          <span class="chip">Mesas de rol</span>
+          <span class="chip">Videojuegos Online</span>
+          <span class="chip">Gimnasio</span>
+          <span class="chip">Futbol</span>
+          <span class="chip">Series</span>
+          <span class="chip">Juegos de mesa</span>
         </div>
       </div>
     </div>
@@ -126,120 +123,141 @@
     <div class="page-head page-head-split">
       <div>
         <p class="eyebrow">// resumen académico y profesional</p>
-        <h1>Curriculum Vitae</h1>
+        <h1 class="hero-title">Curriculum Vitae</h1>
       </div>
-      <a class="btn btn-primary" href="assets/cv/CV-Camila-Torres.pdf" download>
+      <a class="btn btn-primary" href="assets/cv/CV-Darlin-Estrada.pdf" download>
         ↓ Descargar CV en PDF
       </a>
     </div>
-    <p class="cv-note">/* Sube tu CV en PDF a <code>assets/cv/</code> y actualiza el nombre del archivo en el botón de arriba. */</p>
+    <p class="cv-note"></p>
 
     <div class="cv-layout">
       <div class="cv-main">
 
-        <div class="cv-block">
+        <div class="cv-block reveal">
           <h2 class="cv-heading"><span class="cv-index">01</span>Experiencia profesional</h2>
 
           <article class="cv-entry">
             <div class="cv-entry-head">
-              <h3>Programadora de gameplay</h3>
-              <span class="cv-period">2024 — presente</span>
+              <h3>Desarrollador Junior</h3>
+              <span class="cv-period">Nov 2021 - Feb 2025</span>
             </div>
-            <p class="cv-org">Estudio Indie Luz de Cuarzo</p>
-            <p>Desarrollo de sistemas de combate y economía para un RPG táctico 2D. Responsable de la IA de unidades enemigas y de la herramienta interna de balanceo de niveles.</p>
+            <p class="cv-org">Sistemas de Información Empresarial S.A., Medellín, Colombia</p>
+            <ul class="cv-bullets">
+              <li>Desarrollé funcionalidades de software aplicando principios de programación orientada a objetos y buenas prácticas de desarrollo.</li>
+              <li>Implementé soluciones frontend y backend para aplicaciones empresariales, asegurando la alineación con los requerimientos del cliente y optimizando la experiencia del usuario final.</li>
+              <li>Optimicé procesos y consultas de bases de datos mejorando el rendimiento de aplicaciones.</li>
+            </ul>
           </article>
 
           <article class="cv-entry">
             <div class="cv-entry-head">
-              <h3>Desarrolladora freelance</h3>
-              <span class="cv-period">2022 — 2024</span>
+              <h3>Desarrollador Python</h3>
+              <span class="cv-period">Dic 2020 - Jun 2021</span>
             </div>
-            <p class="cv-org">Proyectos independientes / game jams</p>
-            <p>Prototipado y publicación de juegos experimentales para itch.io. Participación en más de diez game jams, con dos proyectos finalistas.</p>
-          </article>
-
-          <article class="cv-entry">
-            <div class="cv-entry-head">
-              <h3>Pasante de desarrollo de software</h3>
-              <span class="cv-period">2021 — 2022</span>
-            </div>
-            <p class="cv-org">Compañía de Software Aplicado S.A.S</p>
-            <p>Apoyo en el desarrollo de herramientas internas y automatización de pruebas, primer acercamiento profesional a sistemas de producción a gran escala.</p>
-          </article>
+            <p class="cv-org">Bancolombia, Medellín, Colombia</p>
+            <ul class="cv-bullets">
+              <li>Desarrollé scripts automatización que optimizaron los flujos de trabajo internos, reduciendo en un 60% el tiempo de ejecución de los procesos.</li>
+              <li>Implementé soluciones para el consumo, procesamiento y transformación de datos a través de APIs, garantizando la integridad de la información.</li>
+              <li>Analicé requerimientos técnicos y transformé necesidades del usuario en soluciones funcionales.</li>
+            </ul>
+            </article>
         </div>
 
-        <div class="cv-block">
+        <div class="cv-block reveal">
           <h2 class="cv-heading"><span class="cv-index">02</span>Educación</h2>
 
           <article class="cv-entry">
             <div class="cv-entry-head">
-              <h3>Ingeniería de Software</h3>
-              <span class="cv-period">2018 — 2023</span>
+              <h3>Junior Unity Developer</h3>
+              <span class="cv-period">Abril 2026 | En formación</span>
             </div>
-            <p class="cv-org">Universidad Nacional — Bogotá, Colombia</p>
-            <p>Énfasis en desarrollo de videojuegos y computación gráfica. Proyecto de grado sobre generación procedural de niveles.</p>
+            <p class="cv-org">Generation - Medellín, Colombia</p>
+            <p>Programa de formación intensiva en desarrollo de videojuegos con Unity utilizando C#.</p>
           </article>
 
           <article class="cv-entry">
             <div class="cv-entry-head">
-              <h3>Diseño de Videojuegos (curso avanzado)</h3>
-              <span class="cv-period">2023</span>
+              <h3>Técnico en desarrollo de software</h3>
+              <span class="cv-period">Julio 2025 | En formación</span>
             </div>
-            <p class="cv-org">Plataforma de formación en línea</p>
-            <p>Especialización en diseño de sistemas y balance de mecánicas de juego.</p>
+            <p class="cv-org">CESDE - Medellín, Colombia</p>
+            <p>Énfasis en desarrollo Full-Stack (Frontend/Backend) y gestión de bases de datos. Enfoque en metodologías ágiles y nuevas tecnologías.</p>
+          </article>
+
+          <article class="cv-entry">
+            <div class="cv-entry-head">
+              <h3>Ingeniero Electrónico</h3>
+              <span class="cv-period">Febrero 2011 | Suspendido en Diciembre 2021</span>
+            </div>
+            <p class="cv-org">Universidad de Antioquia - Medellín, Colombia</p>
+            <p>Énfasis en técnicas digitales: Microelectrónica y sistemas embebidos.</p>
           </article>
         </div>
 
-        <div class="cv-block">
+        <!-- <div class="cv-block reveal">
           <h2 class="cv-heading"><span class="cv-index">03</span>Reconocimientos</h2>
           <ul class="cv-simple-list">
             <li><span>2do lugar — Global Game Jam local</span><span class="cv-year">2023</span></li>
             <li><span>Mención especial en diseño — Ludum Dare</span><span class="cv-year">2022</span></li>
           </ul>
-        </div>
+        </div> -->
 
       </div>
 
       <aside class="cv-side">
-        <div class="cv-side-block">
+        <div class="cv-side-block reveal">
           <h3 class="cv-side-title">Lenguajes</h3>
-          <ul class="skill-list">
-            <li><span>C#</span><div class="skill-bar"><i style="width:90%"></i></div></li>
-            <li><span>GDScript</span><div class="skill-bar"><i style="width:80%"></i></div></li>
-            <li><span>C++</span><div class="skill-bar"><i style="width:65%"></i></div></li>
-            <li><span>JavaScript</span><div class="skill-bar"><i style="width:75%"></i></div></li>
+          <ul class="chip-row">
+            <span class="chip">C#</span>
+            <span class="chip">Java</span>
+            <span class="chip">Python</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">HTML/CSS</span>
+            <span class="chip">SQL</span>
           </ul>
         </div>
 
-        <div class="cv-side-block">
-          <h3 class="cv-side-title">Motores y herramientas</h3>
+        <div class="cv-side-block reveal">
+          <h3 class="cv-side-title">Habilidades</h3>
           <div class="chip-row">
             <span class="chip">Unity</span>
-            <span class="chip">Godot</span>
-            <span class="chip">SFML</span>
-            <span class="chip">Phaser</span>
-            <span class="chip">Git</span>
-            <span class="chip">Aseprite</span>
+            <span class="chip">Programación orientada a objetos</span>
+            <span class="chip">Lógica de programación</span>
+            <span class="chip">Metodologías ágiles</span>
+            <span class="chip">Git/GitHub</span>
+            <span class="chip">Springboot</span>
+            <span class="chip">FastAPI</span>
+            <span class="chip">Docker</span>
+            <span class="chip">APIs REST</span>
+            <span class="chip">Debugging</span>
+            <span class="chip">Angular</span>
+            <span class="chip">React</span>
+            <span class="chip">Node.js</span>
           </div>
         </div>
 
-        <div class="cv-side-block">
+        <div class="cv-side-block reveal">
           <h3 class="cv-side-title">Áreas de interés</h3>
           <div class="chip-row">
+            <span class="chip">Desarrollo de juegos</span>
+            <span class="chip">Mecánicas de juego</span>
             <span class="chip">IA de juego</span>
             <span class="chip">Diseño de sistemas</span>
-            <span class="chip">Accesibilidad</span>
-            <span class="chip">Generación procedural</span>
+            <span class="chip">Desarrollo de software</span>
+            <span class="chip">Inteligencia Artificial</span>
+            <span class="chip">Desarrollo web</span>
+            <span class="chip">Backend</span>
           </div>
         </div>
 
-        <div class="cv-side-block">
+        <div class="cv-side-block reveal">
           <h3 class="cv-side-title">Contacto</h3>
           <ul class="contact-list">
-            <li><a href="mailto:camila.torres@correo.com">camila.torres@correo.com</a></li>
-            <li><a href="https://github.com/tu-usuario" target="_blank" rel="noopener">github.com/tu-usuario</a></li>
-            <li><a href="https://tu-usuario.itch.io" target="_blank" rel="noopener">tu-usuario.itch.io</a></li>
-            <li><a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener">linkedin.com/in/tu-usuario</a></li>
+            <li><a href="mailto:darlin.estrada456@gmail.com" id="contactEmailLink">darlin.estrada456@gmail.com</a></li>
+            <li><a href="https://github.com/vash456" target="_blank" rel="noopener" id="cvGithubLink">github.com/vash456</a></li>
+            <li><a href="https://tu-usuario.itch.io" target="_blank" rel="noopener" id="itchLink">https://vashgames.itch.io/</a></li>
+            <li><a href="https://linkedin.com/in/darlin-estrada" target="_blank" rel="noopener" id="linkedinLink">linkedin.com/in/darlin-estrada</a></li>
           </ul>
         </div>
       </aside>
@@ -249,11 +267,11 @@
 </main>
 
 <footer class="site-footer">
-  <p>© <span id="year"></span> Camila Torres. Hecho con HTML, CSS y JS — alojado en GitHub Pages.</p>
+  <p>© <span id="year"></span> <span id="footerOwnerName">Darlin Estrada Patiño</span>. Hecho con HTML, CSS y JS — alojado en GitHub Pages.</p>
   <div class="footer-links">
-    <a href="https://github.com/tu-usuario" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://tu-usuario.itch.io" target="_blank" rel="noopener">itch.io</a>
-    <a href="mailto:camila.torres@correo.com">Correo</a>
+    <a href="https://github.com/tu-usuario" target="_blank" rel="noopener" id="footerGithubLink">GitHub</a>
+    <a href="https://tu-usuario.itch.io" target="_blank" rel="noopener" id="footerItchLink">itch.io</a>
+    <a href="mailto:darlin.estrada456@gmail.com" id="footerEmailLink">Correo</a>
   </div>
 </footer>
 
