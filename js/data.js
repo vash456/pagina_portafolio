@@ -24,56 +24,31 @@
  */
 
 const PROJECTS = [
+
   {
-    id: "1",
-    title: "RunWorker",
-    tagline: "Juego arcade saltando obstáculos.",
+    id: "4",
+    title: "Oil Be Back",
+    tagline: "¡Deslízate a toda velocidad, esquiva el aceite y mantén el agua limpia!",
     year: "2026",
     status: "Prototipo",
     language: "C#",
     engine: "Unity",
-    tags: ["Arcade"],
+    tags: ["Arcade", "Casual", "Runner 3D"],
     theme:
-      "Un personaje que debe atravesar una ciudad, esquivando obstáculos.",
+      "Aventura veraniega con estética de parque acuático en 3D, donde una simpática gota de agua debe deslizarse por un tobogán gigante esquivando la contaminación de charcos de aceite.",
     mechanics:
-      "Movimiento horizontal continuo y salto simple.",
+      "Movimiento tridimensional en el tobogán utilizando las teclas WASD, recolección de patitos de hule flotantes para acumular puntos, evasión de obstáculos de aceite y sistema de flujo de juego con pantallas de Game Over y reinicio.",
     challenge:
-      "La sincronización de físicas y detección de colisiones para lograr que la detección de los obstáculos (BoxCollider) sea precisa al saltar, evitando que el personaje atraviese los objetos o se atasque.",
-    cover: "assets/img/projects/proto3_2.png",
+      "Primer juego desarrollado para una Game Jam, donde trabaje en equipo con otros desarrolladores. Modele el coleccionable de flotador con forma de pato y el tobogan como escenario, con sus respectivas texturas y box colliders, ademas de realizar la programcion para dar el efecto de movimiento infinito. Colabore en el movimiento del personaje y la integracion de los elementos en escenario, asi como funcionalidades para el funcionamiento del juego en general.",
+    cover: "assets/img/projects/oilbeback_1.png",
     screenshots: [
-      "assets/img/projects/proto3_2.png",
-      "assets/img/projects/proto3_1.png",
-      "assets/img/projects/proto3_3.png",
+      "assets/img/projects/oilbeback_1.png",
+      "assets/img/projects/oilbeback_2.png",
+      "assets/img/projects/oilbeback_3.png",
     ],
     links: {
-      play: "https://vashgames.itch.io/runworker",
-      repo: "",
-      devlog: "",
-    },
-  },
-  {
-    id: "2",
-    title: "SoccerChallenge",
-    tagline: "Defiende tu portería en un caótico juego de colisiones por oleadas basado en físicas.",
-    year: "2026",
-    status: "Prototipo",
-    language: "C#",
-    engine: "Unity",
-    tags: ["Acción", "Arcade", "Físicas"],
-    theme:
-      "Simulación deportiva arcade en un entorno tridimensional simplificado, donde un balón principal debe defender su portería impidiendo el paso de balones enemigos.",
-    mechanics:
-      "Movimiento omnidireccional basado en físicas (WASD), sistema de impulso instantáneo o dash (Espacio), generación de enemigos por oleadas con dificultad progresiva (velocidad y cantidad) y recolección de multiplicadores de fuerza (power-ups).",
-    challenge:
-      "La implementación de un sistema dinámico de spawning por oleadas y la correcta aplicación de fuerzas físicas (AddForce) en las colisiones entre Rigidbodies para lograr un movimiento fluido y colisiones precisas.",
-    cover: "assets/img/projects/challenge4_1.png",
-    screenshots: [
-      "assets/img/projects/challenge4_1.png",
-      "assets/img/projects/challenge4_2.png",
-    ],
-    links: {
-      play: "https://vashgames.itch.io/challenge4",
-      repo: "",
+      play: "https://krostgames.itch.io/oil-be-back",
+      repo: "https://github.com/Krost22/Oil-Be-Back-Game",
       devlog: "",
     },
   },
@@ -104,5 +79,59 @@ const PROJECTS = [
       devlog: "",
     },
   },
+  {
+    id: "2",
+    title: "SoccerChallenge",
+    tagline: "Defiende tu portería en un caótico juego de colisiones por oleadas basado en físicas.",
+    year: "2026",
+    status: "Prototipo",
+    language: "C#",
+    engine: "Unity",
+    tags: ["Acción", "Arcade", "Físicas"],
+    theme:
+      "Simulación deportiva arcade en un entorno tridimensional simplificado, donde un balón principal debe defender su portería impidiendo el paso de balones enemigos.",
+    mechanics:
+      "Movimiento omnidireccional basado en físicas (WASD), sistema de impulso instantáneo o dash (Espacio), generación de enemigos por oleadas con dificultad progresiva (velocidad y cantidad) y recolección de multiplicadores de fuerza (power-ups).",
+    challenge:
+      "La implementación de un sistema dinámico de spawning por oleadas y la correcta aplicación de fuerzas físicas (AddForce) en las colisiones entre Rigidbodies para lograr un movimiento fluido y colisiones precisas.",
+    cover: "assets/img/projects/challenge4_1.png",
+    screenshots: [
+      "assets/img/projects/challenge4_1.png",
+      "assets/img/projects/challenge4_2.png",
+    ],
+    links: {
+      play: "https://vashgames.itch.io/challenge4",
+      repo: "",
+      devlog: "",
+    },
+  },
   
+  {
+    id: "1",
+    title: "RunWorker",
+    tagline: "Juego arcade saltando obstáculos.",
+    year: "2026",
+    status: "Prototipo",
+    language: "C#",
+    engine: "Unity",
+    tags: ["Arcade"],
+    theme:
+      "Un personaje que debe atravesar una ciudad, esquivando obstáculos.",
+    mechanics:
+      "Movimiento horizontal continuo y salto simple.",
+    challenge:
+      "La sincronización de físicas y detección de colisiones para lograr que la detección de los obstáculos (BoxCollider) sea precisa al saltar, evitando que el personaje atraviese los objetos o se atasque.",
+    cover: "assets/img/projects/proto3_2.png",
+    screenshots: [
+      "assets/img/projects/proto3_2.png",
+      "assets/img/projects/proto3_1.png",
+      "assets/img/projects/proto3_3.png",
+    ],
+    links: {
+      play: "https://vashgames.itch.io/runworker",
+      repo: "",
+      devlog: "",
+    },
+  },
+
 ];
