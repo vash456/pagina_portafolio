@@ -148,6 +148,42 @@ main{ position:relative; z-index:1; }
 }
 .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; margin-top:8px; }
 
+.profile-links{
+  display:flex;
+  justify-content:center;
+  width:100%;
+  gap:12px;
+}
+.social-links{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+}
+.social-link{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:14px 18px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+  font-weight:600;
+  transition:transform .15s ease, border-color .15s ease, background .15s ease, color .15s ease;
+}
+.social-link:hover{ transform:translateY(-1px); border-color:var(--accent); background:rgba(255,255,255,.08); color:var(--accent-2); }
+.social-link::before{
+  content:"";
+  width:18px; height:18px;
+  display:inline-block;
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+}
+.social-link-linkedin::before{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23EEF0F7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z'/%3E%3Crect x='2' y='9' width='4' height='12' rx='1'/%3E%3Ccircle cx='4' cy='4' r='2'/%3E%3C/svg%3E"); }
+.social-link-github::before{ background-image:url("../assets/icons/github.svg"); }
+.social-link-itch::before{ background-image:url("../assets/icons/itchio-white.svg"); }
+.social-link-email::before{ background-image:url("../assets/icons/email.svg"); }
+
 .btn{
   font-family:var(--font-body); font-weight:600; font-size:.92rem;
   padding:12px 22px; border-radius:999px; border:1px solid transparent;
@@ -270,10 +306,56 @@ main{ position:relative; z-index:1; }
 .reveal.is-visible{ opacity:1; transform:none; }
 
 .chip{
+  position:relative;
+  display:inline-flex; align-items:center; gap:8px;
   font-family:var(--font-mono); font-size:.72rem; letter-spacing:.02em;
   background:var(--surface-2); border:1px solid var(--border); color:var(--text-muted);
-  padding:4px 10px; border-radius:999px;
+  padding:4px 12px; border-radius:999px;
 }
+.chip::before{
+  content:"";
+  position:absolute; inset-inline-start:12px;
+  width:18px; height:18px;
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+  display:none;
+}
+.chip.has-icon{ padding-left:40px; }
+.chip.has-icon::before{ display:block; }
+.chip.csharp::before{ background-image:url("../assets/icons/csharp.svg"); }
+.chip.java::before{ background-image:url("../assets/icons/java.svg"); }
+.chip.python::before{ background-image:url("../assets/icons/python.svg"); }
+.chip.javascript::before{ background-image:url("../assets/icons/javascript.svg"); }
+.chip.html::before{ background-image:url("../assets/icons/html.svg"); }
+.chip.css::before{ background-image:url("../assets/icons/css.svg"); }
+.chip.sql::before{ background-image:url("../assets/icons/sql.svg"); }
+.chip.unity::before{ background-image:url("../assets/icons/unity.svg"); }
+.chip.github::before{ background-image:url("../assets/icons/github.svg"); }
+.chip.git::before{ background-image:url("../assets/icons/git.svg"); }
+.chip.springboot::before{ background-image:url("../assets/icons/springboot.svg"); }
+.chip.fastapi::before{ background-image:url("../assets/icons/fastapi.svg"); }
+.chip.docker::before{ background-image:url("../assets/icons/docker.svg"); }
+.chip.apis-rest::before{ background-image:url("../assets/icons/api.svg"); }
+.chip.debugging::before{ background-image:url("../assets/icons/debug.svg"); }
+.chip.angular::before{ background-image:url("../assets/icons/angular.svg"); }
+.chip.react::before{ background-image:url("../assets/icons/react.svg"); }
+.chip.nodejs::before{ background-image:url("../assets/icons/nodejs.svg"); }
+.chip.logica::before{ background-image:url("../assets/icons/logica.svg"); }
+.chip.agil::before{ background-image:url("../assets/icons/agil.png"); }
+.chip.game-dev::before{ background-image:url("../assets/icons/game-dev.svg"); }
+.chip.mechanics::before{ background-image:url("../assets/icons/mechanics.svg"); }
+.chip.ai-game::before{ background-image:url("../assets/icons/ai-game.svg"); }
+.chip.systems-design::before{ background-image:url("../assets/icons/systems-design.svg"); }
+.chip.software-dev::before{ background-image:url("../assets/icons/software-dev.svg"); }
+.chip.ai::before{ background-image:url("../assets/icons/ai.svg"); }
+.chip.web-dev::before{ background-image:url("../assets/icons/web-dev.svg"); }
+.chip.backend::before{ background-image:url("../assets/icons/backend.svg"); }
+.chip.coding::before{ background-image:url("../assets/icons/coding.svg"); }
+.chip.fitness::before{ background-image:url("../assets/icons/gym.svg"); }
+.chip.sport::before{ background-image:url("../assets/icons/futbol.svg"); }
+.chip.series::before{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23EEF0F7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='16' rx='2'/%3E%3Cpolygon points='10 8 16 12 10 16'/%3E%3C/svg%3E"); }
+.chip.boardgame::before{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23EEF0F7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='3'/%3E%3Ccircle cx='8' cy='8' r='1.5'/%3E%3Ccircle cx='16' cy='8' r='1.5'/%3E%3Ccircle cx='8' cy='16' r='1.5'/%3E%3Ccircle cx='16' cy='16' r='1.5'/%3E%3C/svg%3E"); }
 
 /* =========================================================
    ABOUT
@@ -318,6 +400,22 @@ main{ position:relative; z-index:1; }
 .skill-bar{ height:6px; background:var(--surface-2); border-radius:999px; overflow:hidden; }
 .skill-bar i{ display:block; height:100%; background:linear-gradient(90deg, var(--accent-2), var(--accent)); border-radius:999px; }
 .contact-list li{ padding:6px 0; font-size:.9rem; word-break:break-all; }
+.contact-link{
+  display:inline-flex; align-items:center; gap:8px;
+  color:var(--accent-2);
+}
+.contact-link::before{
+  content:"";
+  display:inline-block;
+  width:16px; height:16px;
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+}
+.contact-link-email::before{ background-image:url("../assets/icons/email.svg"); }
+.contact-link-github::before{ background-image:url("../assets/icons/github.svg"); }
+.contact-link-itch::before{ background-image:url("../assets/icons/itchio.svg"); }
+.contact-link-linkedin::before{ background-image:url("../assets/icons/linkedin.svg"); }
 
 /* =========================================================
    MODAL
@@ -374,6 +472,22 @@ main{ position:relative; z-index:1; }
 }
 .site-footer p{ margin:0; color:var(--text-muted); font-size:.85rem; }
 .footer-links{ display:flex; gap:18px; font-size:.85rem; }
+.footer-link{
+  display:inline-flex; align-items:center; gap:8px;
+  color:var(--accent-2);
+}
+.footer-link::before{
+  content:"";
+  display:inline-block;
+  width:16px; height:16px;
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+}
+.footer-link-github::before{ background-image:url("../assets/icons/github.svg"); }
+.footer-link-itch::before{ background-image:url("../assets/icons/itchio.svg"); }
+.footer-link-email::before{ background-image:url("../assets/icons/email.svg"); }
+.footer-link-linkedin::before{ background-image:url("../assets/icons/linkedin.svg"); }
 
 /* =========================================================
    RESPONSIVE
