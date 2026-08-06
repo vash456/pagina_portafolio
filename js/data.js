@@ -24,16 +24,39 @@
  */
 
 const PROJECTS = [
-
   {
-    id: "4",
+    id: "7",
+    "title": "Deepre",
+    "tagline": "Mueve al personaje con precisión, recoge palabras que impulsan la esperanza y evita las que la debilitan.",
+    "year": "2026",
+    "status": "Prototipo",
+    "language": "C#",
+    "engine": "Unity",
+    "tags": ["Arcade", "Casual", "2D", "GameJam"],
+    "theme": "Juego de tipo arcade en 2D donde la experiencia gira en torno a la esperanza, representada por una barra que sube o baja según las palabras que el jugador interactúa.",
+    "mechanics": "Movimiento del personaje mediante teclado o arrastre del mouse, generación continua de palabras positivas y negativas, sistema de barra de esperanza, colisiones con objetos del juego y flujo de menú con pausa, victoria, derrota y reinicio.",
+    "challenge": "Desarrolle en Unity el control de movimiento del personaje con Input System permitiendo usar el teclado, el mouse o controles de gamepad. Implemente la logica de spawn de prefabs y el movimiento de las palabras que aparecen en pantalla, ademas de la logica para aparezcan distintas palabras. Desarrolle el sistema de colisiones para distinguir de las palabras buenas y malas, ademas de los efectos sonoros y visuales al colisionar. Colabore en los ajustes de la interfaz de usuario y la integración de los elementos en el escenario, así como funcionalidades para el funcionamiento del juego en general.",
+    cover: "assets/img/projects/deepre_1.jpg",
+    screenshots: [
+      "assets/img/projects/deepre_1.jpg",
+      "assets/img/projects/deepre_2.jpg",
+      "assets/img/projects/deepre_3.jpg",
+    ],
+    links: {
+      play: "https://daniel-b-m.itch.io/deepre",
+      repo: "https://github.com/MonJrz/Deepre",
+      devlog: "",
+    },
+  },
+  {
+    id: "6",
     title: "Oil Be Back",
     tagline: "¡Deslízate a toda velocidad, esquiva el aceite y mantén el agua limpia!",
     year: "2026",
     status: "Prototipo",
     language: "C#",
     engine: "Unity",
-    tags: ["Arcade", "Casual", "Runner 3D"],
+    tags: ["Arcade", "Casual", "Runner 3D", "GameJam"],
     theme:
       "Aventura veraniega con estética de parque acuático en 3D, donde una simpática gota de agua debe deslizarse por un tobogán gigante esquivando la contaminación de charcos de aceite.",
     mechanics:
@@ -53,7 +76,7 @@ const PROJECTS = [
     },
   },
   {
-    id: "3",
+    id: "5",
     title: "ClickBox",
     tagline: "Un desafío árcade de reflejos rápidos y precisión con el ratón.",
     year: "2026",
@@ -80,7 +103,7 @@ const PROJECTS = [
     },
   },
   {
-    id: "2",
+    id: "4",
     title: "SoccerChallenge",
     tagline: "Defiende tu portería en un caótico juego de colisiones por oleadas basado en físicas.",
     year: "2026",
@@ -105,9 +128,9 @@ const PROJECTS = [
       devlog: "",
     },
   },
-  
+
   {
-    id: "1",
+    id: "3",
     title: "RunWorker",
     tagline: "Juego arcade saltando obstáculos.",
     year: "2026",
@@ -130,6 +153,69 @@ const PROJECTS = [
     links: {
       play: "https://vashgames.itch.io/runworker",
       repo: "",
+      devlog: "",
+    },
+  },
+
+  {
+    id: "2",
+    title: "Astro Bank Backend",
+    tagline: "Backend para banca digital con cuentas, transferencias y reglas de negocio.",
+    year: "2026",
+    status: "Prototipo",
+    language: "Java",
+    engine: "MySQL + JDBC",
+    tags: ["Backend", "clean Architecture/Hexagonal", "Singleton", "Repository", "Puertos y Adaptadores"],
+    category: "Backend",
+    theme:
+      "Plataforma de banca digital académica diseñada para gestionar cuentas, movimientos y transferencias de forma segura y escalable.",
+    mechanics:
+      "Proyecto backend de una plataforma bancaria desarrollado aplicando Arquitectura Limpia (Clean Architecture/Hexagonal) para garantizar una solución desacoplada, mantenible y escalable.",
+    challenge:
+      "Diseñé la arquitectura separando las capas de Dominio, Casos de Uso, Persistencia y Presentación siguiendo el patrón Ports & Adapters. Implementé funcionalidades como autenticación de clientes, gestión de cuentas bancarias, transferencias, consignaciones, retiros y consulta de movimientos. Desarrollé la capa de persistencia utilizando MySQL, JDBC, los patrones Repository y Data Mapper, aplicando inversión de dependencias para desacoplar la lógica de negocio del acceso a datos. Apliqué principios de Programación Orientada a Objetos y buenas prácticas de arquitectura para facilitar la mantenibilidad y evolución del sistema.",
+    cover: "assets/img/projects/astrobank_backend_1.png",
+    screenshots: [
+      "assets/img/projects/astrobank_backend_1.png",
+      "assets/img/projects/astrobank_backend_2.png",
+      "assets/img/projects/astrobank_backend_3.png",
+    ],
+    links: {
+      play: "",
+      repo: "https://github.com/vash456/AstroBank_backend",
+      devlog: "",
+    },
+  },
+
+  {
+    id: "1",
+    title: "Facturación Digital API",
+    tagline: "Backend REST para gestión de facturación, clientes y planes con autenticación JWT.",
+    year: "2026",
+    status: "Desarrollo",
+    language: "Python",
+    engine: "FastAPI + SQLModel + SQLite",
+    tags: ["Backend",
+      "REST API",
+      "JWT Authentication",
+      "SQLModel/ORM",
+      "Dependency Injection",
+      "OAuth2",
+      "Role-Based Access Control"],
+    category: "Backend",
+    theme:
+      "Plataforma de facturación digital académica diseñada para gestionar clientes, facturas, transacciones y planes de forma segura y escalable.",
+    mechanics:
+      "Proyecto backend de una API REST desarrollado con FastAPI aplicando principios de arquitectura limpia, inyección de dependencias y separación de responsabilidades para garantizar una solución desacoplada, mantenible y escalable.",
+    challenge:
+      "Diseñé una API REST robusta separando las capas de Rutas (routers), Esquemas (schemas), Modelos (models) y Lógica de Negocio (core) siguiendo el patrón de inyección de dependencias. Implementé funcionalidades como autenticación de usuarios con JWT, gestión de clientes con validación de emails únicos, administración de facturas, transacciones, planes y consulta de movimientos. Desarrollé la capa de persistencia utilizando SQLModel como ORM con SQLite, aplicando el patrón Repository implícito a través de las funciones de consulta en SQLModel. Implementé OAuth2 con PasswordBearer para proteger endpoints sensibles, control de acceso basado en roles (RBAC) con decoradores custom, validación de datos con Pydantic, y manejo centralizado de errores HTTP. Apliqué principios SOLID, validaciones de negocio en cascada, hashing seguro de contraseñas con bcrypt, y buenas prácticas RESTful para facilitar la mantenibilidad y evolución del sistema.",
+    cover: "assets/img/projects/proyecto_fastapi_1.png",
+    screenshots: [
+      "assets/img/projects/proyecto_fastapi_1.png",
+      "assets/img/projects/proyecto_fastapi_2.png",
+    ],
+    links: {
+      play: "",
+      repo: "https://github.com/vash456/proyecto_fastapi",
       devlog: "",
     },
   },

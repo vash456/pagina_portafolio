@@ -128,6 +128,10 @@ const LANG_COLORS = {
   "JavaScript": "#C084FC",
   "Python": "#7DD3FC",
   "Lua": "#93C5FD",
+  "Java": "#60A5FA",
+  "TypeScript": "#38BDF8",
+  "PHP": "#F59E0B",
+  "SQL": "#34D399",
 };
 function colorFor(lang){ return LANG_COLORS[lang] || "#5EEAD4"; }
 
@@ -221,10 +225,38 @@ function linkRow(links){
   return items.length ? `<div class="modal-links">${items.join("")}</div>` : "";
 }
 
+function projectTypeLabel(project){
+  const category = (project.category || "").toLowerCase();
+  if(category.includes("backend")) return "Backend";
+  if(category.includes("software")) return "Software";
+  return "Videojuego";
+}
+
+function modalSectionLabels(project){
+  switch(projectTypeLabel(project)){
+    case "Backend":
+      return {
+        primary: "Funcionalidades principales",
+        secondary: "Retos de arquitectura y desarrollo",
+      };
+    case "Software":
+      return {
+        primary: "Características principales",
+        secondary: "Retos de desarrollo y solución",
+      };
+    default:
+      return {
+        primary: "Mecánicas principales",
+        secondary: "Reto de diseño / programación",
+      };
+  }
+}
+
 function openModal(id){
   const p = PROJECTS.find(x => x.id === id);
   if(!p) return;
   const c = colorFor(p.language);
+  const labels = modalSectionLabels(p);
 
   modalContent.innerHTML = `
     <div class="modal-gallery" style="--accent-card:${c}">
@@ -243,9 +275,10 @@ function openModal(id){
       <div class="modal-meta">
         <span class="chip" style="border-color:${c};color:${c}">${p.language}</span>
         <span class="chip">${p.engine}</span>
-        <span class="chip">${p.year}</span>
+        <span class="chip">${projectTypeLabel(p)}</span>
         <span class="chip">${p.status}</span>
         ${p.tags.map(t=>`<span class="chip">${t}</span>`).join("")}
+        <span class="chip">${p.year}</span>
       </div>
       <p class="modal-tagline">${p.tagline}</p>
 
@@ -254,11 +287,11 @@ function openModal(id){
         <p>${p.theme}</p>
       </div>
       <div class="modal-section">
-        <h4>Mecánicas principales</h4>
+        <h4>${labels.primary}</h4>
         <p>${p.mechanics}</p>
       </div>
       <div class="modal-section">
-        <h4>Reto de diseño / programación</h4>
+        <h4>${labels.secondary}</h4>
         <p>${p.challenge}</p>
       </div>
 

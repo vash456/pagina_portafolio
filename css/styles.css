@@ -343,6 +343,7 @@ main{ position:relative; z-index:1; }
 .chip.nodejs::before{ background-image:url("../assets/icons/nodejs.svg"); }
 .chip.logica::before{ background-image:url("../assets/icons/logica.svg"); }
 .chip.agil::before{ background-image:url("../assets/icons/agil.png"); }
+.chip.architecture::before{ background-image:url("../assets/icons/software-architecture.png"); }
 .chip.game-dev::before{ background-image:url("../assets/icons/game-dev.svg"); }
 .chip.mechanics::before{ background-image:url("../assets/icons/mechanics.svg"); }
 .chip.ai-game::before{ background-image:url("../assets/icons/ai-game.svg"); }
@@ -427,15 +428,26 @@ main{ position:relative; z-index:1; }
 .modal-backdrop.is-open{ display:flex; }
 .modal{
   background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
-  max-width:860px; width:100%; max-height:88vh; overflow-y:auto; position:relative;
+  max-width:860px; width:min(100%, 860px); max-height:88vh; overflow:hidden; position:relative;
+  display:flex; flex-direction:column; box-shadow:0 24px 80px rgba(0,0,0,.35);
   animation:modalIn .22s ease both;
 }
 @keyframes modalIn{ from{ opacity:0; transform:translateY(14px) scale(.98);} to{opacity:1; transform:none;} }
+.modal-content{
+  overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain; -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin; scrollbar-color:var(--accent) transparent;
+}
+.modal-content::-webkit-scrollbar{ width:8px; }
+.modal-content::-webkit-scrollbar-track{ background:rgba(255,255,255,.04); }
+.modal-content::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg, var(--accent-2), var(--accent));
+  border-radius:999px;
+}
+.modal-content::-webkit-scrollbar-thumb:hover{ background:var(--accent); }
 .modal-close{
-  position:sticky; top:14px; float:right; margin:14px 14px 0 0;
-  width:36px; height:36px; border-radius:50%; border:1px solid var(--border);
-  background:var(--surface-2); color:var(--text); cursor:pointer; z-index:5;
-  font-size:1rem;
+  position:absolute; top:14px; right:14px; width:36px; height:36px; border-radius:50%; border:1px solid var(--border);
+  background:var(--surface-2); color:var(--text); cursor:pointer; z-index:8; font-size:1rem;
+  display:grid; place-items:center;
 }
 .modal-close:hover{ background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
 
