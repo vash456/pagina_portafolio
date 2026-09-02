@@ -25,6 +25,30 @@
 
 const PROJECTS = [
   {
+    id: "8",
+    "title": "Splime",
+    "tagline": "Plataformas y puzzles cooperativos 3D donde dos slimes combinan sus propiedades físicas para superar desafíos en solitario o en línea.",
+    "year": "2026",
+    "status": "Prototipo",
+    "language": "C#",
+    "engine": "Unity 6",
+    "tags": ["Multiplayer", "Co-op", "Puzzle 3D", "Platformer", "Netcode", "WebGL"],
+    "theme": "Videojuego cooperativo y de puzzles en 3D isométrico.",
+    "mechanics": "Cooperación asimétrica con dos roles complementarios: Slime Transformador (se endurece como plataforma pesada y activa placas de presión) y Slime Ágil (se escurre por conductos estrechos y posee mayor salto). Sistema de salas online mediante Join Codes de 6 caracteres con sincronización de estados 'Ready', modo Single-Player dinámico con alternancia en tiempo real entre ambos slimes, checkpoints modulares, plataformas móviles e interruptores de peso.",
+    "challenge": "Diseñe e implemente la arquitectura multijugador con Netcode for GameObjects (NGO) y Unity Gaming Services (Relay / Authentication), forzando el protocolo WebSocket Secure (WSS) y optimizando el transporte para garantizar juego cruzado (Cross-play) sin caídas entre navegadores WebGL y Windows Standalone.<br><br>Desarrolle un sistema de Modo Un Jugador (SinglePlayerManager) totalmente desacoplado de la red que gestiona la transferencia de inputs en caliente y la reorientación dinámica de objetivos con Unity Cinemachine, además de la resolución de problemas de físicas (detección de suelo por bounds y prevención de saltos infinitos).<br><br>Implemente físicas y movimientode jugador, arquitectura desacoplada de habilidades (ISlimeAbility), puntos de spawn universales y sistema de checkpoints sincronizados por red.",
+  cover: "assets/img/projects/splime_1.png",
+    screenshots: [
+      "assets/img/projects/splime_2.png",
+      "assets/img/projects/splime_3.png",
+      "assets/img/projects/splime_4.png",
+    ],
+    links: {
+      play: "https://mmsiak.itch.io/splime",
+      repo: "https://github.com/MonJrz/Splime",
+      devlog: "",
+    },
+  },
+  {
     id: "7",
     "title": "Deepre",
     "tagline": "Mueve al personaje con precisión, recoge palabras que impulsan la esperanza y evita las que la debilitan.",
