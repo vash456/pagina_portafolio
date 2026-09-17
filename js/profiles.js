@@ -20,7 +20,7 @@ const PROFILES = {
 
     /* Hero */
     eyebrow: "// Desarrollo de software · Backend · Full-Stack",
-    heroTitle: "Construyo soluciones robustas,<br>un sistema a la vez.",
+    heroTitle: "Construyo sistemas confiables donde el rendimiento<br>y la arquitectura importan.",
     heroSub:
       "Desarrollador de software con experiencia en backend, APIs REST, arquitectura limpia y plataformas e-commerce. Aquí reúno los proyectos donde diseño sistemas escalables y resuelvo problemas de negocio.",
 
@@ -95,7 +95,7 @@ const PROFILES = {
 
     /* Hero */
     eyebrow: "// Desarrollo de videojuegos · Unity · C#",
-    heroTitle: "Construyo mundos jugables,<br>un sistema a la vez.",
+    heroTitle: "Mecánicas fluidas, físicas precisas<br>y experiencias de juego memorables.",
     heroSub:
       "Programador y desarrollador de videojuegos con Unity y C#. Aquí reúno los proyectos donde creo mecánicas de juego, resuelvo problemas de jugabilidad y experiencia de jugador.",
 
