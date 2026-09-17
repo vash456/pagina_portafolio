@@ -4,7 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Darlin Estrada Patiño — Portafolio</title>
-<meta name="description" content="Portafolio de proyectos de desarrollo de software y videojuegos. Portafolio, sobre mí y CV.">
+<meta name="description" content="Portafolio profesional de Darlin Estrada Patiño con perfil dual: Desarrollador de Software (Backend, APIs REST, Arquitectura Limpia) y Desarrollador de Videojuegos Unity (C#, Físicas, Netcode).">
+
+<!-- Open Graph / Meta tags para compartir en LinkedIn, WhatsApp, Discord, Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Darlin Estrada Patiño — Portafolio">
+<meta property="og:title" content="Darlin Estrada Patiño — Software & Unity Game Developer">
+<meta property="og:description" content="Portafolio profesional con perfil dual: Backend, APIs REST y Arquitectura Limpia · Videojuegos con Unity, C# y Netcode.">
+<meta property="og:image" content="assets/img/og-preview.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:image:alt" content="Banner de Portafolio Dual - Darlin Estrada Patiño">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Darlin Estrada Patiño — Software & Unity Game Developer">
+<meta name="twitter:description" content="Portafolio profesional dual: Desarrollo de Software y Videojuegos Unity con C#.">
+<meta name="twitter:image" content="assets/img/og-preview.jpg">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2310121A'/%3E%3Cpath d='M8 20 L14 12 L18 17 L24 9' stroke='%23FFB648' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 
@@ -119,7 +136,7 @@
           <a class="social-link social-link-linkedin" href="https://linkedin.com/in/darlin-estrada" target="_blank" rel="noopener">LinkedIn</a>
           <a class="social-link social-link-github" href="https://github.com/vash456" target="_blank" rel="noopener">GitHub</a>
           <a class="social-link social-link-itch gamedev-only" href="https://vashgames.itch.io" target="_blank" rel="noopener">itch.io</a>
-          <a class="social-link social-link-email" href="mailto:darlin.estrada456@gmail.com">Correo</a>
+          <button class="social-link social-link-email" id="heroEmailBtn" type="button" aria-label="Copiar correo al portapapeles" title="Haz clic para copiar el correo">Correo</button>
         </div>
       </div>
       <div class="hero-inner">
@@ -175,11 +192,11 @@
 
         <h3>Fuera de pantalla</h3>
         <div class="chip-row">
-          <span class="chip game-dev has-icon gamedev-only">Videojuegos Online</span>
+          <span class="chip game-dev has-icon">Videojuegos Online</span>
           <span class="chip fitness has-icon">Gimnasio</span>
           <span class="chip sport has-icon">Futbol</span>
           <span class="chip series has-icon">Series</span>
-          <span class="chip boardgame has-icon gamedev-only">Juegos de mesa</span>
+          <span class="chip boardgame has-icon">Juegos de mesa</span>
         </div>
       </div>
     </div>
@@ -351,7 +368,9 @@
         <div class="cv-side-block reveal">
           <h3 class="cv-side-title">Contacto</h3>
           <ul class="contact-list">
-            <li><a href="mailto:darlin.estrada456@gmail.com" class="contact-link contact-link-email" id="contactEmailLink">darlin.estrada456@gmail.com</a></li>
+            <li>
+              <button class="contact-link contact-link-email" id="contactEmailBtn" type="button" aria-label="Copiar correo al portapapeles" title="Haz clic para copiar el correo">darlin.estrada456@gmail.com</button>
+            </li>
             <li><a href="https://github.com/vash456" target="_blank" rel="noopener" class="contact-link contact-link-github" id="cvGithubLink">github.com/vash456</a></li>
             <li class="gamedev-only"><a href="https://vashgames.itch.io/" target="_blank" rel="noopener" class="contact-link contact-link-itch" id="itchLink">https://vashgames.itch.io/</a></li>
             <li><a href="https://linkedin.com/in/darlin-estrada" target="_blank" rel="noopener" class="contact-link contact-link-linkedin" id="linkedinLink">linkedin.com/in/darlin-estrada</a></li>
@@ -369,9 +388,34 @@
     <a href="https://linkedin.com/in/darlin-estrada" class="footer-link footer-link-linkedin" target="_blank" rel="noopener" id="footerLinkedinLink">LinkedIn</a>
     <a href="https://github.com/vash456" class="footer-link footer-link-github" target="_blank" rel="noopener" id="footerGithubLink">GitHub</a>
     <a href="https://vashgames.itch.io/" class="footer-link footer-link-itch gamedev-only" target="_blank" rel="noopener" id="footerItchLink">itch.io</a>
-    <a href="mailto:darlin.estrada456@gmail.com" class="footer-link footer-link-email" id="footerEmailLink">Correo</a>
+    <button class="footer-link footer-link-email" id="footerEmailBtn" type="button" aria-label="Copiar correo al portapapeles" title="Haz clic para copiar el correo">Correo</button>
   </div>
 </footer>
+
+<!-- ============ HUD MINIJUEGO INTERACTIVO (GAME DEV) ============ -->
+<aside class="game-hud gamedev-only" id="gameHud" aria-label="Minijuego interactivo de fondo">
+  <div class="game-hud-inner">
+    <div class="game-hud-header">
+      <span class="game-hud-pulse" aria-hidden="true"></span>
+      <span class="game-hud-title">UNITY ENGINE BG · PLAYABLE</span>
+    </div>
+    <div class="game-hud-stats">
+      <div class="game-hud-item">
+        <span class="game-hud-lbl">SCORE</span>
+        <span class="game-hud-val" id="gameScore">0</span>
+      </div>
+      <div class="game-hud-item">
+        <span class="game-hud-lbl">ORBS</span>
+        <span class="game-hud-val" id="gameOrbs">0</span>
+      </div>
+    </div>
+    <p class="game-hud-tip">🎮 Haz clic en el fondo para disparar · Pasa el mouse para absorber orbes</p>
+    <div class="game-hud-actions">
+      <button type="button" class="game-hud-btn" id="gameResetBtn" title="Reiniciar puntuación">Reiniciar</button>
+      <button type="button" class="game-hud-btn" id="gameToggleBtn" title="Minimizar panel">Minimizar</button>
+    </div>
+  </div>
+</aside>
 
 </div><!-- /app -->
 
