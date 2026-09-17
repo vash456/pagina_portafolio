@@ -1,0 +1,221 @@
+/* =========================================================
+   PROFILE SELECTOR — Fullscreen overlay
+   ========================================================= */
+
+.profile-selector {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(16, 18, 26, 0.94);
+  padding: 24px;
+  animation: selectorFadeIn 0.7s ease both;
+}
+
+.profile-selector.is-leaving {
+  animation: selectorFadeOut 0.5s ease both;
+  pointer-events: none;
+}
+
+@keyframes selectorFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes selectorFadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(1.04); }
+}
+
+/* ── Header ──────────────────────────── */
+.selector-header {
+  text-align: center;
+  margin-bottom: 52px;
+  animation: selectorSlideUp 0.6s 0.15s ease both;
+}
+
+.selector-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+
+.selector-name .brand-mark {
+  color: var(--accent);
+}
+
+.selector-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+/* ── Cards grid ──────────────────────── */
+.selector-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  max-width: 800px;
+  width: 100%;
+}
+
+/* ── Individual card ─────────────────── */
+.profile-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 44px 32px 36px;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
+              border-color 0.3s ease,
+              box-shadow 0.35s ease;
+  animation: selectorCardIn 0.55s ease both;
+}
+
+.profile-card:nth-child(1) { animation-delay: 0.25s; }
+.profile-card:nth-child(2) { animation-delay: 0.40s; }
+
+@keyframes selectorSlideUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes selectorCardIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Glow background */
+.profile-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.profile-card--software::before {
+  background: radial-gradient(
+    ellipse 70% 80% at 50% 100%,
+    rgba(94, 234, 212, 0.07),
+    transparent 70%
+  );
+}
+.profile-card--gamedev::before {
+  background: radial-gradient(
+    ellipse 70% 80% at 50% 100%,
+    rgba(255, 182, 72, 0.07),
+    transparent 70%
+  );
+}
+
+.profile-card:hover::before {
+  opacity: 1;
+}
+
+.profile-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 28px 64px -24px rgba(0, 0, 0, 0.55);
+}
+.profile-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.profile-card--software:hover {
+  border-color: var(--accent-2);
+  box-shadow: 0 28px 64px -24px rgba(0, 0, 0, 0.55),
+              0 0 0 1px var(--accent-2) inset;
+}
+.profile-card--gamedev:hover {
+  border-color: var(--accent);
+  box-shadow: 0 28px 64px -24px rgba(0, 0, 0, 0.55),
+              0 0 0 1px var(--accent) inset;
+}
+
+/* ── Icon ────────────────────────────── */
+.profile-card__icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 22px;
+  display: block;
+}
+
+.profile-card--software .profile-card__icon { color: var(--accent-2); }
+.profile-card--gamedev  .profile-card__icon { color: var(--accent); }
+
+/* ── Title / Description ─────────────── */
+.profile-card__title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+
+.profile-card__desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0 0 20px;
+}
+
+/* ── Tags ────────────────────────────── */
+.profile-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.profile-card__tags .chip {
+  font-size: 0.68rem;
+  padding: 3px 10px;
+}
+
+/* ── CTA ─────────────────────────────── */
+.profile-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  transition: gap 0.25s ease;
+}
+
+.profile-card--software .profile-card__cta { color: var(--accent-2); }
+.profile-card--gamedev  .profile-card__cta { color: var(--accent); }
+
+.profile-card:hover .profile-card__cta { gap: 14px; }
+
+/* ── Responsive ──────────────────────── */
+@media (max-width: 640px) {
+  .selector-cards {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+
+  .selector-header {
+    margin-bottom: 36px;
+  }
+
+  .profile-card {
+    padding: 32px 24px 28px;
+  }
+}

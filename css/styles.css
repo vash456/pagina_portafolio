@@ -106,6 +106,22 @@ code{ font-family:var(--font-mono); background:var(--surface-2); padding:.1em .4
 .menu-item.is-active{ color:var(--text); }
 .menu-item.is-active .menu-cursor{ opacity:1; }
 
+.topbar-actions{
+  display:flex; align-items:center; gap:10px;
+}
+.switch-profile-btn{
+  font-family:var(--font-mono); font-size:.75rem; letter-spacing:.03em;
+  background:var(--surface-2); border:1px solid var(--border); color:var(--text-muted);
+  padding:8px 14px; border-radius:999px; cursor:pointer;
+  display:inline-flex; align-items:center; gap:6px;
+  transition:all .18s ease;
+}
+.switch-profile-btn:hover{
+  border-color:var(--accent); color:var(--text); background:var(--surface);
+  transform:translateY(-1px);
+}
+.switch-profile-btn svg{ color:var(--accent); }
+
 .menu-toggle{
   display:none; flex-direction:column; justify-content:center; gap:5px;
   width:38px; height:38px; background:var(--surface); border:1px solid var(--border);
@@ -116,6 +132,7 @@ code{ font-family:var(--font-mono); background:var(--surface-2); padding:.1em .4
 /* =========================================================
    LAYOUT / VIEWS
    ========================================================= */
+.app.is-hidden{ display:none !important; }
 main{ position:relative; z-index:1; }
 .view{ display:none; padding:0 clamp(20px,5vw,56px) 100px; max-width:var(--max-w); margin:0 auto; }
 .view.is-active{ display:block; animation:fadeUp .35s ease both; }
@@ -184,6 +201,16 @@ main{ position:relative; z-index:1; }
 .social-link-itch::before{ background-image:url("../assets/icons/itchio-white.svg"); }
 .social-link-email::before{ background-image:url("../assets/icons/email.svg"); }
 
+/* Botón de correo en Social Links (Hero) */
+button.social-link{
+  font-family:inherit; font-size:inherit; cursor:pointer; text-align:left;
+}
+.social-link.is-copied{
+  border-color:var(--accent-2) !important;
+  background:rgba(94, 234, 212, 0.15) !important;
+  color:var(--accent-2) !important;
+}
+
 .btn{
   font-family:var(--font-body); font-weight:600; font-size:.92rem;
   padding:12px 22px; border-radius:999px; border:1px solid transparent;
@@ -195,6 +222,7 @@ main{ position:relative; z-index:1; }
 .btn-primary:hover{ background:#ffc670; }
 .btn-ghost{ background:transparent; color:var(--text); border-color:var(--border); }
 .btn-ghost:hover{ border-color:var(--accent-2); }
+.btn-sm{ padding:8px 16px; font-size:.82rem; }
 
 .hero-stats{
   display:flex; gap:0; border-top:1px solid var(--border); padding-top:28px;
@@ -239,7 +267,7 @@ main{ position:relative; z-index:1; }
    PROJECT CARDS
    ========================================================= */
 .cards-grid{
-  display:grid; grid-template-columns:repeat(auto-fill, minmax(440px,1fr)); gap:36px;
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(360px,1fr)); gap:32px;
 }
 .card{
   --mx:50%; --my:50%;
@@ -276,8 +304,16 @@ main{ position:relative; z-index:1; }
   position:absolute; top:16px; right:16px; z-index:2;
   font-family:var(--font-mono); font-size:.7rem; letter-spacing:.05em;
   padding:6px 13px; border-radius:999px;
-  background:rgba(16,18,26,0.72); backdrop-filter:blur(6px);
+  background:rgba(16,18,26,0.78); backdrop-filter:blur(6px);
   border:1px solid var(--status-color, var(--accent-2)); color:var(--status-color, var(--accent-2));
+}
+
+.card-team-badge{
+  position:absolute; top:16px; left:16px; z-index:2;
+  font-family:var(--font-mono); font-size:.68rem; letter-spacing:.04em;
+  padding:5px 11px; border-radius:999px;
+  background:rgba(16,18,26,0.78); backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,0.15); color:var(--text-muted);
 }
 
 .card-body{ padding:22px 24px 26px; display:flex; flex-direction:column; gap:10px; flex:1; }
@@ -373,6 +409,71 @@ main{ position:relative; z-index:1; }
 /* =========================================================
    CV
    ========================================================= */
+.cv-head-actions{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+
+/* Switch de vista CV (Web vs PDF) */
+.cv-view-switch{
+  display:inline-flex; gap:6px; margin:20px 0 32px;
+  background:var(--surface); border:1px solid var(--border); border-radius:999px;
+  padding:5px; max-width:100%;
+}
+.cv-switch-tab{
+  font-family:var(--font-mono); font-size:.8rem; letter-spacing:.03em;
+  background:transparent; border:none; color:var(--text-muted);
+  padding:9px 18px; border-radius:999px; cursor:pointer;
+  display:inline-flex; align-items:center; gap:8px;
+  transition:all .18s ease;
+}
+.cv-switch-tab:hover{ color:var(--text); }
+.cv-switch-tab.is-active{
+  background:var(--surface-2); color:var(--accent);
+  box-shadow:0 2px 10px rgba(0,0,0,0.3);
+  font-weight:600;
+}
+.profile-software .cv-switch-tab.is-active{
+  color:var(--accent-2);
+}
+
+/* Panel visor PDF embebido */
+.cv-pdf-panel{
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+  overflow:hidden; margin-bottom:50px;
+  animation:fadeUp .3s ease both;
+  box-shadow:0 18px 40px -20px rgba(0,0,0,0.5);
+}
+.cv-pdf-panel.is-hidden{ display:none !important; }
+.cv-layout.is-hidden{ display:none !important; }
+
+.cv-pdf-toolbar{
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+  padding:14px 20px; background:var(--surface-2); border-bottom:1px solid var(--border);
+}
+.cv-pdf-info{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.cv-pdf-badge{
+  font-family:var(--font-mono); font-size:.72rem; letter-spacing:.04em;
+  padding:4px 12px; border-radius:999px; font-weight:600;
+  background:rgba(255,182,72,0.12); color:var(--accent); border:1px solid var(--accent);
+}
+.profile-software .cv-pdf-badge{
+  background:rgba(94,234,212,0.12); color:var(--accent-2); border-color:var(--accent-2);
+}
+.cv-pdf-name{
+  font-family:var(--font-mono); font-size:.85rem; color:var(--text); font-weight:500;
+}
+.cv-pdf-actions{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+
+.cv-pdf-frame-wrapper{
+  position:relative; width:100%; height:840px; background:#12141d;
+}
+.cv-pdf-frame{
+  width:100%; height:100%; border:none; display:block;
+}
+.cv-pdf-fallback{
+  padding:20px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:10px;
+  background:var(--surface-2); border-top:1px solid var(--border);
+}
+.cv-pdf-fallback p{ margin:0; font-size:.88rem; color:var(--text-muted); }
+
 .cv-layout{ display:grid; grid-template-columns:1fr 300px; gap:56px; align-items:start; }
 .cv-block{ margin-bottom:44px; }
 .cv-heading{
@@ -417,6 +518,20 @@ main{ position:relative; z-index:1; }
 .contact-link-github::before{ background-image:url("../assets/icons/github.svg"); }
 .contact-link-itch::before{ background-image:url("../assets/icons/itchio.svg"); }
 .contact-link-linkedin::before{ background-image:url("../assets/icons/linkedin.svg"); }
+
+/* Botones de correo interactivos (CV y Footer) */
+button.contact-link, button.footer-link{
+  font-family:inherit; font-size:inherit; cursor:pointer;
+  background:transparent; border:none; padding:0; text-align:left;
+  transition:color .18s ease, transform .15s ease;
+}
+button.contact-link:hover, button.footer-link:hover{
+  transform:translateY(-1px);
+}
+.contact-link.is-copied, .footer-link.is-copied{
+  color:var(--accent-2) !important;
+  font-weight:600;
+}
 
 /* =========================================================
    MODAL
@@ -467,12 +582,57 @@ main{ position:relative; z-index:1; }
 .modal-meta{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
 .modal-tagline{ color:var(--text-muted); font-size:1.02rem; margin-bottom:24px; }
 
+.modal-info-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:12px;
+  background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-md);
+  padding:14px 18px; margin-bottom:24px;
+}
+.modal-info-item{ display:flex; flex-direction:column; gap:4px; }
+.modal-info-label{
+  font-family:var(--font-mono); font-size:.72rem; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--text-muted);
+}
+.modal-info-value{
+  font-size:.9rem; font-weight:600; color:var(--text); line-height:1.35;
+}
+
 .modal-section{ margin-bottom:22px; }
 .modal-section h4{
   font-family:var(--font-mono); font-size:.8rem; letter-spacing:.06em; text-transform:uppercase;
   color:var(--accent-2); margin-bottom:8px;
 }
 .modal-links{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; }
+
+/* =========================================================
+   MODAL VISOR DE CV (Pantalla Completa)
+   ========================================================= */
+.cv-modal-backdrop{ z-index:110; }
+.cv-modal{
+  max-width:1100px; width:min(96%, 1100px); height:92vh; max-height:92vh;
+}
+.cv-modal-header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 22px; background:var(--surface-2); border-bottom:1px solid var(--border);
+  gap:16px; flex-wrap:wrap;
+}
+.cv-modal-title-box{ display:flex; align-items:center; gap:12px; }
+.cv-modal-tag{
+  font-family:var(--font-mono); font-size:.72rem; letter-spacing:.04em; font-weight:600;
+  padding:3px 10px; border-radius:999px;
+  background:rgba(255,182,72,0.12); color:var(--accent); border:1px solid var(--accent);
+}
+.profile-software .cv-modal-tag{
+  background:rgba(94,234,212,0.12); color:var(--accent-2); border-color:var(--accent-2);
+}
+.cv-modal-title{ font-size:1.15rem; margin:0; font-family:var(--font-display); }
+.cv-modal-controls{ display:flex; align-items:center; gap:10px; }
+.cv-modal-close{
+  position:static; width:34px; height:34px; border-radius:50%; font-size:.9rem;
+}
+.cv-modal-body{
+  flex:1; height:calc(100% - 64px); background:#12141d; overflow:hidden;
+}
+.cv-modal-iframe{ width:100%; height:100%; border:none; display:block; }
 
 /* =========================================================
    FOOTER
@@ -523,9 +683,169 @@ main{ position:relative; z-index:1; }
   .menu.is-open{ display:flex; }
   .menu-item{ justify-content:flex-start; width:100%; padding:12px 14px; }
   .menu-toggle{ display:flex; }
+  .cv-head-actions{ width:100%; }
+  .cv-pdf-frame-wrapper{ height:560px; }
+  .cv-pdf-fallback{ display:flex; }
+  .cv-modal{ width:98%; height:96vh; }
+  .cv-modal-header{ padding:12px 16px; }
 }
 
 @media (max-width: 480px){
+  .cards-grid{ grid-template-columns: 1fr; gap:20px; }
+  .cv-head-actions{ flex-direction:column; align-items:stretch; }
+  .cv-view-switch{ width:100%; justify-content:center; }
+  .cv-switch-tab{ flex:1; justify-content:center; padding:8px 10px; font-size:.74rem; }
+  .cv-pdf-frame-wrapper{ height:480px; }
   .hero{ padding:44px 0 32px; }
   .view{ padding-bottom:70px; }
+}
+
+/* =========================================================
+   ESTILOS TEMÁTICOS PARA PERFIL GAME DEV
+   ========================================================= */
+body.profile-gamedev{
+  --accent: #FFB648;
+  --accent-2: #FF7844;
+  --accent-ink: #0d0f16;
+}
+
+body.profile-gamedev .grid-overlay{
+  background-image:
+    linear-gradient(to right, rgba(255, 182, 72, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 182, 72, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+body.profile-gamedev .hero-title{
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFD07A 50%, #FF7844 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.profile-gamedev .brand-mark{
+  color: var(--accent);
+  text-shadow: 0 0 12px rgba(255, 182, 72, 0.55);
+}
+
+body.profile-gamedev .stat-num{
+  text-shadow: 0 0 16px rgba(255, 182, 72, 0.35);
+}
+
+body.profile-gamedev .eyebrow{
+  color: #FFB648;
+}
+
+body.profile-gamedev .card{
+  border-color: rgba(255, 182, 72, 0.18);
+}
+body.profile-gamedev .card:hover{
+  border-color: var(--accent);
+  box-shadow: 0 24px 50px -20px rgba(255, 140, 40, 0.28), 0 0 0 1px var(--accent) inset;
+}
+
+/* HUD del minijuego en Game Dev */
+.game-hud{
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 35;
+  background: rgba(18, 20, 30, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 182, 72, 0.35);
+  border-radius: var(--radius-md);
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 182, 72, 0.12);
+  padding: 12px 16px;
+  max-width: 320px;
+  transition: transform .25s ease, opacity .25s ease;
+  font-family: var(--font-mono);
+}
+.game-hud.is-collapsed .game-hud-stats,
+.game-hud.is-collapsed .game-hud-tip,
+.game-hud.is-collapsed #gameResetBtn{
+  display: none;
+}
+.game-hud.is-collapsed{
+  padding: 8px 12px;
+}
+.game-hud-header{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.game-hud-pulse{
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FFB648;
+  box-shadow: 0 0 8px #FFB648;
+  animation: hudPulse 1.8s infinite;
+}
+@keyframes hudPulse{
+  0%, 100%{ opacity: 1; transform: scale(1); }
+  50%{ opacity: 0.35; transform: scale(0.85); }
+}
+.game-hud-title{
+  font-size: .68rem;
+  letter-spacing: .08em;
+  color: #FFB648;
+  font-weight: 600;
+}
+.game-hud-stats{
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 6px 0;
+}
+.game-hud-item{
+  display: flex;
+  flex-direction: column;
+}
+.game-hud-lbl{
+  font-size: .62rem;
+  color: var(--text-muted);
+  letter-spacing: .06em;
+}
+.game-hud-val{
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #EEF0F7;
+  font-family: var(--font-display);
+}
+.game-hud-tip{
+  font-size: .68rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+  margin: 0 0 8px;
+}
+.game-hud-actions{
+  display: flex;
+  gap: 8px;
+}
+.game-hud-btn{
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  background: var(--surface-2);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--text);
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.game-hud-btn:hover{
+  background: #FFB648;
+  color: #10121A;
+  border-color: #FFB648;
+}
+
+@media (max-width: 600px){
+  .game-hud{
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    max-width: calc(100% - 24px);
+  }
 }
