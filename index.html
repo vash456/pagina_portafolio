@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Darlin Estrada Patiño — Portafolio</title>
-<meta name="description" content="Portafolio de proyectos de videojuegos: diseño, programación y desarrollo. Portafolio, sobre mí y CV.">
-
-<!-- EDITA: reemplaza "Darlin Estrada Patiño" en todo el archivo por tu nombre real -->
+<meta name="description" content="Portafolio de proyectos de desarrollo de software y videojuegos. Portafolio, sobre mí y CV.">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2310121A'/%3E%3Cpath d='M8 20 L14 12 L18 17 L24 9' stroke='%23FFB648' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 
@@ -15,11 +13,70 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/profile-selector.css">
 </head>
 <body>
 
 <div class="grid-overlay" aria-hidden="true"></div>
 <canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
+
+<!-- ============ PROFILE SELECTOR (entry screen) ============ -->
+<div class="profile-selector" id="profileSelector">
+  <div class="selector-header">
+    <h1 class="selector-name"><span class="brand-mark">▸</span> Darlin Estrada Patiño</h1>
+    <p class="selector-subtitle">// selecciona el perfil que te interesa</p>
+  </div>
+
+  <div class="selector-cards">
+    <!-- Software -->
+    <div class="profile-card profile-card--software" data-profile="software" tabindex="0" role="button" aria-label="Ver perfil de Desarrollador de Software">
+      <svg class="profile-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="6" width="40" height="32" rx="4"/>
+        <line x1="4" y1="42" x2="44" y2="42"/>
+        <polyline points="16 18 12 22 16 26"/>
+        <polyline points="32 18 36 22 32 26"/>
+        <line x1="22" y1="16" x2="26" y2="28"/>
+      </svg>
+      <h2 class="profile-card__title">Desarrollador de Software</h2>
+      <p class="profile-card__desc">Backend, APIs REST, arquitectura limpia, e-commerce y desarrollo web Full-Stack.</p>
+      <div class="profile-card__tags">
+        <span class="chip">Java</span>
+        <span class="chip">Python</span>
+        <span class="chip">FastAPI</span>
+        <span class="chip">Angular</span>
+      </div>
+      <span class="profile-card__cta">Ver portafolio <span aria-hidden="true">→</span></span>
+    </div>
+
+    <!-- Game Dev -->
+    <div class="profile-card profile-card--gamedev" data-profile="gamedev" tabindex="0" role="button" aria-label="Ver perfil de Desarrollador de Videojuegos Unity">
+      <svg class="profile-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="12" width="44" height="26" rx="8"/>
+        <circle cx="15" cy="25" r="5"/>
+        <line x1="15" y1="21" x2="15" y2="29"/>
+        <line x1="11" y1="25" x2="19" y2="25"/>
+        <circle cx="31" cy="22" r="2.2"/>
+        <circle cx="37" cy="25" r="2.2"/>
+        <circle cx="31" cy="28" r="2.2"/>
+        <line x1="20" y1="12" x2="22" y2="8"/>
+        <line x1="28" y1="12" x2="26" y2="8"/>
+        <line x1="22" y1="8" x2="26" y2="8"/>
+      </svg>
+      <h2 class="profile-card__title">Game Developer · Unity</h2>
+      <p class="profile-card__desc">Mecánicas de juego, físicas, multijugador y experiencias interactivas con Unity y C#.</p>
+      <div class="profile-card__tags">
+        <span class="chip">Unity</span>
+        <span class="chip">C#</span>
+        <span class="chip">Netcode</span>
+        <span class="chip">3D / 2D</span>
+      </div>
+      <span class="profile-card__cta">Ver portafolio <span aria-hidden="true">→</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ APP CONTAINER (hidden until profile selected) ============ -->
+<div id="app" class="app is-hidden">
 
 <header class="topbar">
   <a class="brand" href="#" data-view="portfolio" id="brandLink">
@@ -38,13 +95,21 @@
       <span class="menu-cursor" aria-hidden="true">▸</span>CV
     </button>
   </nav>
-  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="topbar-actions">
+    <button class="switch-profile-btn" id="switchProfile" type="button" title="Cambiar perfil">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/>
+        <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+      </svg>
+      Cambiar perfil
+    </button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
 
 <main id="main">
-  
 
   <!-- ============ VISTA: PORTAFOLIO ============ -->
   <section class="view is-active" id="view-portfolio" data-view-panel="portfolio">
@@ -53,14 +118,14 @@
         <div class="social-links">
           <a class="social-link social-link-linkedin" href="https://linkedin.com/in/darlin-estrada" target="_blank" rel="noopener">LinkedIn</a>
           <a class="social-link social-link-github" href="https://github.com/vash456" target="_blank" rel="noopener">GitHub</a>
-          <a class="social-link social-link-itch" href="https://vashgames.itch.io" target="_blank" rel="noopener">itch.io</a>
+          <a class="social-link social-link-itch gamedev-only" href="https://vashgames.itch.io" target="_blank" rel="noopener">itch.io</a>
           <a class="social-link social-link-email" href="mailto:darlin.estrada456@gmail.com">Correo</a>
         </div>
       </div>
       <div class="hero-inner">
-        <p class="eyebrow">// Desarrollo de videojuegos - Desarrollador de software</p>
+        <p class="eyebrow" id="heroEyebrow">// Desarrollo de videojuegos - Desarrollador de software</p>
         <h1 class="hero-title" id="heroTitle">Construyo mundos jugables,<br>un sistema a la vez.</h1>
-        <p class="hero-sub">Soy programador y desarrollador de videojuegos. Aquí reúno los proyectos donde creo mecanicas de juego, resuelvo problemas de jugabilidad y experiencia de jugador.</p>
+        <p class="hero-sub" id="heroSub">Soy programador y desarrollador de videojuegos. Aquí reúno los proyectos donde creo mecanicas de juego, resuelvo problemas de jugabilidad y experiencia de jugador.</p>
         <div class="hero-actions">
           <a href="#portfolio-grid" class="btn btn-primary">Ver proyectos</a>
           <button class="btn btn-ghost" data-view="about" type="button">Acerca de mí</button>
@@ -68,15 +133,15 @@
         </div>
       </div>
       <div class="hero-stats" role="list">
-        <div class="stat" role="listitem"><span class="stat-num" id="statProjects">04</span><span class="stat-label">proyectos publicados</span></div>
-        <div class="stat" role="listitem"><span class="stat-num" id="statEngines">03</span><span class="stat-label">motores / stacks</span></div>
-        <div class="stat" role="listitem"><span class="stat-num" id="statExperience">+4</span><span class="stat-label">años programando</span></div>
+        <div class="stat" role="listitem"><span class="stat-num" id="statProjects">04</span><span class="stat-label" id="statProjectsLabel">proyectos publicados</span></div>
+        <div class="stat" role="listitem"><span class="stat-num" id="statEngines">03</span><span class="stat-label" id="statEnginesLabel">motores / stacks</span></div>
+        <div class="stat" role="listitem"><span class="stat-num" id="statExperience">+4</span><span class="stat-label" id="statExperienceLabel">años programando</span></div>
       </div>
     </div>
 
     <div class="section-head reveal" id="portfolio-grid">
-      <h2>Portafolio</h2>
-      <p>Cada proyecto incluye tema, mecánicas, stack técnico y el problema de diseño o programación que buscaba resolver.</p>
+      <h2 id="portfolioHeading">Portafolio</h2>
+      <p id="portfolioDescription">Cada proyecto incluye tema, mecánicas, stack técnico y el problema de diseño o programación que buscaba resolver.</p>
     </div>
 
     <div class="filter-bar" id="filterBar" aria-label="Filtrar proyectos por lenguaje">
@@ -91,7 +156,7 @@
   <!-- ============ VISTA: ACERCA DE MÍ ============ -->
   <section class="view" id="view-about" data-view-panel="about">
     <div class="page-head">
-      <p class="eyebrow">// jugador desde antes de saber leer</p>
+      <p class="eyebrow" id="aboutEyebrow">// jugador desde antes de saber leer</p>
       <h1 class="hero-title">Acerca de mí</h1>
     </div>
 
@@ -104,24 +169,17 @@
       <div class="about-copy reveal">
         <p>Mi camino en la tecnología empezó desarmando juguetes para entender cómo funcionaban por dentro y pasando horas frente a la pantalla descifrando como avanzar en mis videojuegos favoritos. Esa curiosidad de la infancia se convirtió en mi profesión: hoy ya no solo juego los mundos de otros, sino que diseño la lógica y las mecánicas que los hacen cobrar vida.</p>
 
-        <p>Desarrollador de software con bases sólidas y expandiendo mi perfil hacia el desarrollo de videojuegos con Unity y C#, aporto una base sólida en programación orientada a objetos, arquitectura limpia y buenas prácticas de desarrollo. Mi enfoque combina el pensamiento analítico y la rigurosidad técnica con la creatividad necesaria para diseñar mecánicas de juego inmersivas, fluidas y desafiantes. Me destaco por mi capacidad de adaptación tecnológica, comunicación efectiva y un fuerte espíritu de trabajo colaborativo.</p>
+        <p id="aboutParagraph2">Desarrollador de software con bases sólidas y expandiendo mi perfil hacia el desarrollo de videojuegos con Unity y C#, aporto una base sólida en programación orientada a objetos, arquitectura limpia y buenas prácticas de desarrollo. Mi enfoque combina el pensamiento analítico y la rigurosidad técnica con la creatividad necesaria para diseñar mecánicas de juego inmersivas, fluidas y desafiantes. Me destaco por mi capacidad de adaptación tecnológica, comunicación efectiva y un fuerte espíritu de trabajo colaborativo.</p>
 
         <p>Fuera del código, me encuentras haciendo deporte, recorriendo rutas en moto o compartiendo partidas online con amigos el fin de semana. Como jugador y creador, creo que los mejores juegos son los que tienen una dificultad que desafía pero no frustra.</p>
 
-        <!-- <h3>Cómo trabajo</h3>
-        <ul class="about-list">
-          <li><strong>Prototipo rápido, itero rápido.</strong> Prefiero tener algo jugable en horas, no en semanas.</li>
-          <li><strong>Documento decisiones de diseño</strong>, no solo el código: el «por qué» importa tanto como el «cómo».</li>
-          <li><strong>Diseño pensando en accesibilidad</strong> desde el primer prototipo, no como un parche al final.</li>
-        </ul> -->
-
         <h3>Fuera de pantalla</h3>
         <div class="chip-row">
-          <span class="chip game-dev has-icon">Videojuegos Online</span>
+          <span class="chip game-dev has-icon gamedev-only">Videojuegos Online</span>
           <span class="chip fitness has-icon">Gimnasio</span>
           <span class="chip sport has-icon">Futbol</span>
           <span class="chip series has-icon">Series</span>
-          <span class="chip boardgame has-icon">Juegos de mesa</span>
+          <span class="chip boardgame has-icon gamedev-only">Juegos de mesa</span>
         </div>
       </div>
     </div>
@@ -132,15 +190,62 @@
     <div class="page-head page-head-split">
       <div>
         <p class="eyebrow">// resumen académico y profesional</p>
-        <h1 class="hero-title">Curriculum Vitae</h1>
+        <h1 class="hero-title" id="cvHeadingTitle">Curriculum Vitae</h1>
       </div>
-      <a class="btn btn-primary" href="assets/cv/CV-Darlin-Estrada.pdf" download>
-        ↓ Descargar CV en PDF
-      </a>
+      <div class="cv-head-actions">
+        <button class="btn btn-ghost" id="cvOpenModalBtn" type="button" aria-label="Previsualizar CV en pantalla completa">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Previsualizar PDF
+        </button>
+        <a class="btn btn-primary" id="cvDownloadBtn" href="assets/cv/CV-Darlin-Software.pdf" download>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar CV en PDF
+        </a>
+      </div>
     </div>
-    <p class="cv-note"></p>
 
-    <div class="cv-layout">
+    <!-- Alternador de vista: Resumen Web vs Visor PDF -->
+    <div class="cv-view-switch" role="tablist" aria-label="Modo de visualización de CV">
+      <button class="cv-switch-tab is-active" id="cvTabWeb" role="tab" aria-selected="true" aria-controls="cvLayoutWeb" type="button">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        Resumen Interactivo
+      </button>
+      <button class="cv-switch-tab" id="cvTabPdf" role="tab" aria-selected="false" aria-controls="cvLayoutPdf" type="button">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Documento PDF Oficial
+      </button>
+    </div>
+
+    <!-- Visor PDF embebido (visible cuando cvTabPdf está activo) -->
+    <div class="cv-pdf-panel is-hidden" id="cvLayoutPdf" role="tabpanel" aria-labelledby="cvTabPdf">
+      <div class="cv-pdf-toolbar">
+        <div class="cv-pdf-info">
+          <span class="cv-pdf-badge" id="cvPdfProfileBadge">Perfil Software</span>
+          <span class="cv-pdf-name" id="cvPdfFileName">CV-Darlin-Software.pdf</span>
+        </div>
+        <div class="cv-pdf-actions">
+          <a class="btn btn-ghost btn-sm" id="cvPdfNewTabBtn" href="#" target="_blank" rel="noopener" title="Abrir en pestaña nueva">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Abrir en pestaña
+          </a>
+          <button class="btn btn-ghost btn-sm" id="cvPdfExpandBtn" type="button" title="Ver a pantalla completa">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+            Pantalla completa
+          </button>
+        </div>
+      </div>
+      <div class="cv-pdf-frame-wrapper">
+        <iframe class="cv-pdf-frame" id="cvEmbeddedIframe" src="" title="Visualizador de Curriculum Vitae"></iframe>
+        <div class="cv-pdf-fallback" id="cvPdfFallback">
+          <p>¿Prefieres abrir el documento directamente?</p>
+          <a class="btn btn-primary btn-sm" id="cvFallbackDownloadBtn" href="" target="_blank" rel="noopener">
+            Abrir documento PDF
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cv-layout" id="cvLayoutWeb" role="tabpanel" aria-labelledby="cvTabWeb">
       <div class="cv-main">
 
         <div class="cv-block reveal">
@@ -172,12 +277,12 @@
               <li>Desarrollé scripts para la extracción y transformación de datos meteorológicos de Colombia mediante la investigación e integración de APIs gratuitas, exportando los resultados a formatos Excel.</li>
               <li>Analicé requerimientos y necesidades de negocio junto a equipos multidisciplinarios para transformarlos en soluciones de software automatizadas que garantizaron la integridad de la información.</li>
             </ul>
-            </article>
+          </article>
 
-            <article class="cv-entry">
+          <article class="cv-entry">
             <div class="cv-entry-head">
               <h3>Desarrollador Trainee - AS400 / SQL</h3>
-              <span class="cv-period">Oct 2021 - Jun 2020</span>
+              <span class="cv-period">Oct 2019 - Jun 2020</span>
             </div>
             <p class="cv-org">Tata Consultancy Services - Medellín, Colombia</p>
             <ul class="cv-bullets">
@@ -185,13 +290,13 @@
               <li>Diseño y ejecución de consultas complejas en SQL para la manipulación, filtrado y extracción eficiente de grandes volúmenes de datos.</li>
               <li>Desarrollo de lógica de programación y scripts aplicados a la automatización de tareas y procesos dentro del entorno empresarial de AS400.</li>
             </ul>
-            </article>
+          </article>
         </div>
 
         <div class="cv-block reveal">
           <h2 class="cv-heading"><span class="cv-index">02</span>Educación</h2>
 
-          <article class="cv-entry">
+          <article class="cv-entry gamedev-only">
             <div class="cv-entry-head">
               <h3>Junior Unity Developer</h3>
               <span class="cv-period">Mayo 2026 | Agosto 2026</span>
@@ -219,61 +324,27 @@
           </article>
         </div>
 
-        <!-- <div class="cv-block reveal">
-          <h2 class="cv-heading"><span class="cv-index">03</span>Reconocimientos</h2>
-          <ul class="cv-simple-list">
-            <li><span>2do lugar — Global Game Jam local</span><span class="cv-year">2023</span></li>
-            <li><span>Mención especial en diseño — Ludum Dare</span><span class="cv-year">2022</span></li>
-          </ul>
-        </div> -->
-
       </div>
 
       <aside class="cv-side">
         <div class="cv-side-block reveal">
           <h3 class="cv-side-title">Lenguajes</h3>
-          <ul class="chip-row">
-            <span class="chip csharp has-icon">C#</span>
-            <span class="chip java has-icon">Java</span>
-            <span class="chip python has-icon">Python</span>
-            <span class="chip javascript has-icon">JavaScript</span>
-            <span class="chip html has-icon">HTML</span>
-            <span class="chip css has-icon">CSS</span>
-            <span class="chip sql has-icon">SQL</span>
-          </ul>
+          <div class="chip-row" id="cvLanguages">
+            <!-- generado por JS según perfil -->
+          </div>
         </div>
 
         <div class="cv-side-block reveal">
           <h3 class="cv-side-title">Habilidades</h3>
-          <div class="chip-row">
-            <span class="chip unity has-icon">Unity</span>
-            <span class="chip coding has-icon">POO</span>
-            <span class="chip git has-icon">Git/GitHub</span>
-            <span class="chip springboot has-icon">Springboot</span>
-            <span class="chip fastapi has-icon">FastAPI</span>
-            <span class="chip docker has-icon">Docker</span>
-            <span class="chip apis-rest has-icon">APIs REST</span>
-            <span class="chip debugging has-icon">Debugging</span>
-            <span class="chip angular has-icon">Angular</span>
-            <span class="chip react has-icon">React</span>
-            <span class="chip nodejs has-icon">Node.js</span>
-            <span class="chip architecture has-icon">Arquitectura de software</span>
-            <span class="chip logica has-icon">Lógica de programación</span>
-            <span class="chip agil has-icon">Metodologías ágiles</span>
+          <div class="chip-row" id="cvSkills">
+            <!-- generado por JS según perfil -->
           </div>
         </div>
 
         <div class="cv-side-block reveal">
           <h3 class="cv-side-title">Áreas de interés</h3>
-          <div class="chip-row">
-            <span class="chip game-dev has-icon">Desarrollo de juegos</span>
-            <span class="chip mechanics has-icon">Mecánicas de juego</span>
-            <span class="chip ai-game has-icon">IA de juego</span>
-            <span class="chip systems-design has-icon">Diseño de sistemas</span>
-            <span class="chip software-dev has-icon">Desarrollo de software</span>
-            <span class="chip ai has-icon">Inteligencia Artificial</span>
-            <span class="chip web-dev has-icon">Desarrollo web</span>
-            <span class="chip backend has-icon">Backend</span>
+          <div class="chip-row" id="cvInterests">
+            <!-- generado por JS según perfil -->
           </div>
         </div>
 
@@ -282,7 +353,7 @@
           <ul class="contact-list">
             <li><a href="mailto:darlin.estrada456@gmail.com" class="contact-link contact-link-email" id="contactEmailLink">darlin.estrada456@gmail.com</a></li>
             <li><a href="https://github.com/vash456" target="_blank" rel="noopener" class="contact-link contact-link-github" id="cvGithubLink">github.com/vash456</a></li>
-            <li><a href="https://tu-usuario.itch.io" target="_blank" rel="noopener" class="contact-link contact-link-itch" id="itchLink">https://vashgames.itch.io/</a></li>
+            <li class="gamedev-only"><a href="https://vashgames.itch.io/" target="_blank" rel="noopener" class="contact-link contact-link-itch" id="itchLink">https://vashgames.itch.io/</a></li>
             <li><a href="https://linkedin.com/in/darlin-estrada" target="_blank" rel="noopener" class="contact-link contact-link-linkedin" id="linkedinLink">linkedin.com/in/darlin-estrada</a></li>
           </ul>
         </div>
@@ -296,11 +367,13 @@
   <p>© <span id="year"></span> <span id="footerOwnerName">Darlin Estrada Patiño</span>. Hecho con HTML, CSS y JS — alojado en GitHub Pages.</p>
   <div class="footer-links">
     <a href="https://linkedin.com/in/darlin-estrada" class="footer-link footer-link-linkedin" target="_blank" rel="noopener" id="footerLinkedinLink">LinkedIn</a>
-    <a href="https://github.com/tu-usuario" class="footer-link footer-link-github" target="_blank" rel="noopener" id="footerGithubLink">GitHub</a>
-    <a href="https://tu-usuario.itch.io" class="footer-link footer-link-itch" target="_blank" rel="noopener" id="footerItchLink">itch.io</a>
+    <a href="https://github.com/vash456" class="footer-link footer-link-github" target="_blank" rel="noopener" id="footerGithubLink">GitHub</a>
+    <a href="https://vashgames.itch.io/" class="footer-link footer-link-itch gamedev-only" target="_blank" rel="noopener" id="footerItchLink">itch.io</a>
     <a href="mailto:darlin.estrada456@gmail.com" class="footer-link footer-link-email" id="footerEmailLink">Correo</a>
   </div>
 </footer>
+
+</div><!-- /app -->
 
 <!-- ============ MODAL DE PROYECTO ============ -->
 <div class="modal-backdrop" id="modalBackdrop">
@@ -312,7 +385,35 @@
   </div>
 </div>
 
+<!-- ============ MODAL VISOR DE CV ============ -->
+<div class="modal-backdrop cv-modal-backdrop" id="cvModalBackdrop">
+  <div class="modal cv-modal" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle">
+    <div class="cv-modal-header">
+      <div class="cv-modal-title-box">
+        <span class="cv-modal-tag" id="cvModalTag">Perfil</span>
+        <h2 id="cvModalTitle" class="cv-modal-title">Curriculum Vitae</h2>
+      </div>
+      <div class="cv-modal-controls">
+        <a class="btn btn-ghost btn-sm" id="cvModalNewTabBtn" href="#" target="_blank" rel="noopener" title="Abrir en pestaña nueva">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Nueva pestaña
+        </a>
+        <a class="btn btn-primary btn-sm" id="cvModalDownloadBtn" href="#" download title="Descargar PDF">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar PDF
+        </a>
+        <button class="modal-close cv-modal-close" id="cvModalClose" aria-label="Cerrar visor">✕</button>
+      </div>
+    </div>
+    <div class="cv-modal-body">
+      <iframe class="cv-modal-iframe" id="cvModalIframe" src="" title="Visualizador de PDF a pantalla completa"></iframe>
+    </div>
+  </div>
+</div>
+
 <script src="js/data.js"></script>
+<script src="js/profiles.js"></script>
 <script src="js/script.js"></script>
+<script src="js/profile-selector.js"></script>
 </body>
 </html>

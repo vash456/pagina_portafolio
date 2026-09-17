@@ -1,14 +1,14 @@
 /**
  * DATOS DE PROYECTOS
  * ===================
- * Para agregar un nuevo juego, copia uno de los objetos de abajo,
+ * Para agregar un nuevo proyecto, copia uno de los objetos de abajo,
  * pégalo dentro del array PROJECTS y edita sus valores.
  * No necesitas tocar el HTML ni el CSS: las tarjetas y el modal
  * se generan automáticamente a partir de esta lista.
  *
  * Campos:
  * - id: identificador único, sin espacios (ej: "mi-juego")
- * - title: nombre del juego
+ * - title: nombre del juego/proyecto
  * - tagline: frase corta de una línea para la tarjeta
  * - year: año de desarrollo/lanzamiento
  * - status: "Publicado" | "Prototipo" | "En desarrollo"
@@ -16,27 +16,41 @@
  * - engine: motor o framework usado
  * - tags: lista corta de etiquetas (género, plataforma, etc.)
  * - theme: descripción del tema/ambientación del juego
- * - mechanics: mecánicas principales de juego
+ * - mechanics: mecánicas principales / funcionalidades
  * - challenge: el problema o reto técnico/de diseño que resolviste
  * - cover: ruta a la imagen de portada
  * - screenshots: array de rutas a capturas de pantalla
  * - links: { play, repo, devlog } — deja "" en los que no apliquen
+ *
+ * Campos nuevos (dual-profile):
+ * - profile: "gamedev" | "software" | "both" — en qué perfil aparece
+ * - role: (opcional) tu rol específico en el proyecto
+ * - teamSize: (opcional) "Individual" | "Equipo (N personas)" etc.
+ * - duration: (opcional) duración del desarrollo
  */
 
 const PROJECTS = [
   {
     id: "8",
-    "title": "Splime",
-    "tagline": "Plataformas y puzzles cooperativos 3D donde dos slimes combinan sus propiedades físicas para superar desafíos en solitario o en línea.",
-    "year": "2026",
-    "status": "Prototipo",
-    "language": "C#",
-    "engine": "Unity 6",
-    "tags": ["Multiplayer", "Co-op", "Puzzle 3D", "Platformer", "Netcode", "WebGL"],
-    "theme": "Videojuego cooperativo y de puzzles en 3D isométrico.",
-    "mechanics": "Cooperación asimétrica con dos roles complementarios: Slime Transformador (se endurece como plataforma pesada y activa placas de presión) y Slime Ágil (se escurre por conductos estrechos y posee mayor salto). Sistema de salas online mediante Join Codes de 6 caracteres con sincronización de estados 'Ready', modo Single-Player dinámico con alternancia en tiempo real entre ambos slimes, checkpoints modulares, plataformas móviles e interruptores de peso.",
-    "challenge": "Diseñe e implemente la arquitectura multijugador con Netcode for GameObjects (NGO) y Unity Gaming Services (Relay / Authentication), forzando el protocolo WebSocket Secure (WSS) y optimizando el transporte para garantizar juego cruzado (Cross-play) sin caídas entre navegadores WebGL y Windows Standalone.<br><br>Desarrolle un sistema de Modo Un Jugador (SinglePlayerManager) totalmente desacoplado de la red que gestiona la transferencia de inputs en caliente y la reorientación dinámica de objetivos con Unity Cinemachine, además de la resolución de problemas de físicas (detección de suelo por bounds y prevención de saltos infinitos).<br><br>Implemente físicas y movimientode jugador, arquitectura desacoplada de habilidades (ISlimeAbility), puntos de spawn universales y sistema de checkpoints sincronizados por red.",
-  cover: "assets/img/projects/splime_1.png",
+    title: "Splime",
+    tagline:
+      "Plataformas y puzzles cooperativos 3D donde dos slimes combinan sus propiedades físicas para superar desafíos en solitario o en línea.",
+    year: "2026",
+    status: "Prototipo",
+    language: "C#",
+    engine: "Unity 6",
+    tags: ["Multiplayer", "Co-op", "Puzzle 3D", "Platformer", "Netcode", "WebGL"],
+    profile: "gamedev",
+    role: "Programador de gameplay, multijugador y físicas",
+    teamSize: "Equipo (4 personas)",
+    duration: "3 semanas",
+    theme:
+      "Videojuego cooperativo y de puzzles en 3D isométrico.",
+    mechanics:
+      "Cooperación asimétrica con dos roles complementarios: Slime Transformador (se endurece como plataforma pesada y activa placas de presión) y Slime Ágil (se escurre por conductos estrechos y posee mayor salto). Sistema de salas online mediante Join Codes de 6 caracteres con sincronización de estados 'Ready', modo Single-Player dinámico con alternancia en tiempo real entre ambos slimes, checkpoints modulares, plataformas móviles e interruptores de peso.",
+    challenge:
+      "Diseñe e implemente la arquitectura multijugador con Netcode for GameObjects (NGO) y Unity Gaming Services (Relay / Authentication), forzando el protocolo WebSocket Secure (WSS) y optimizando el transporte para garantizar juego cruzado (Cross-play) sin caídas entre navegadores WebGL y Windows Standalone.<br><br>Desarrolle un sistema de Modo Un Jugador (SinglePlayerManager) totalmente desacoplado de la red que gestiona la transferencia de inputs en caliente y la reorientación dinámica de objetivos con Unity Cinemachine, además de la resolución de problemas de físicas (detección de suelo por bounds y prevención de saltos infinitos).<br><br>Implemente físicas y movimiento de jugador, arquitectura desacoplada de habilidades (ISlimeAbility), puntos de spawn universales y sistema de checkpoints sincronizados por red.",
+    cover: "assets/img/projects/splime_1.png",
     screenshots: [
       "assets/img/projects/splime_2.png",
       "assets/img/projects/splime_3.png",
@@ -50,16 +64,24 @@ const PROJECTS = [
   },
   {
     id: "7",
-    "title": "Deepre",
-    "tagline": "Mueve al personaje con precisión, recoge palabras que impulsan la esperanza y evita las que la debilitan.",
-    "year": "2026",
-    "status": "Prototipo",
-    "language": "C#",
-    "engine": "Unity",
-    "tags": ["Arcade", "Casual", "2D", "GameJam"],
-    "theme": "Juego de tipo arcade en 2D donde la experiencia gira en torno a la esperanza, representada por una barra que sube o baja según las palabras que el jugador interactúa.",
-    "mechanics": "Movimiento del personaje mediante teclado o arrastre del mouse, generación continua de palabras positivas y negativas, sistema de barra de esperanza, colisiones con objetos del juego y flujo de menú con pausa, victoria, derrota y reinicio.",
-    "challenge": "Desarrolle en Unity el control de movimiento del personaje con Input System permitiendo usar el teclado, el mouse o controles de gamepad. Implemente la logica de spawn de prefabs y el movimiento de las palabras que aparecen en pantalla, ademas de la logica para aparezcan distintas palabras. Desarrolle el sistema de colisiones para distinguir de las palabras buenas y malas, ademas de los efectos sonoros y visuales al colisionar. Colabore en los ajustes de la interfaz de usuario y la integración de los elementos en el escenario, así como funcionalidades para el funcionamiento del juego en general.",
+    title: "Deepre",
+    tagline:
+      "Mueve al personaje con precisión, recoge palabras que impulsan la esperanza y evita las que la debilitan.",
+    year: "2026",
+    status: "Prototipo",
+    language: "C#",
+    engine: "Unity",
+    tags: ["Arcade", "Casual", "2D", "GameJam"],
+    profile: "gamedev",
+    role: "Programador de movimiento, spawn system y colisiones",
+    teamSize: "Equipo (Game Jam)",
+    duration: "48 horas (Game Jam)",
+    theme:
+      "Juego de tipo arcade en 2D donde la experiencia gira en torno a la esperanza, representada por una barra que sube o baja según las palabras que el jugador interactúa.",
+    mechanics:
+      "Movimiento del personaje mediante teclado o arrastre del mouse, generación continua de palabras positivas y negativas, sistema de barra de esperanza, colisiones con objetos del juego y flujo de menú con pausa, victoria, derrota y reinicio.",
+    challenge:
+      "Desarrolle en Unity el control de movimiento del personaje con Input System permitiendo usar el teclado, el mouse o controles de gamepad. Implemente la logica de spawn de prefabs y el movimiento de las palabras que aparecen en pantalla, ademas de la logica para aparezcan distintas palabras. Desarrolle el sistema de colisiones para distinguir de las palabras buenas y malas, ademas de los efectos sonoros y visuales al colisionar. Colabore en los ajustes de la interfaz de usuario y la integración de los elementos en el escenario, así como funcionalidades para el funcionamiento del juego en general.",
     cover: "assets/img/projects/deepre_1.jpg",
     screenshots: [
       "assets/img/projects/deepre_1.jpg",
@@ -75,12 +97,17 @@ const PROJECTS = [
   {
     id: "6",
     title: "Oil Be Back",
-    tagline: "¡Deslízate a toda velocidad, esquiva el aceite y mantén el agua limpia!",
+    tagline:
+      "¡Deslízate a toda velocidad, esquiva el aceite y mantén el agua limpia!",
     year: "2026",
     status: "Prototipo",
     language: "C#",
     engine: "Unity",
     tags: ["Arcade", "Casual", "Runner 3D", "GameJam"],
+    profile: "gamedev",
+    role: "Modelado 3D y programación de movimiento infinito",
+    teamSize: "Equipo (Game Jam)",
+    duration: "48 horas (Game Jam)",
     theme:
       "Aventura veraniega con estética de parque acuático en 3D, donde una simpática gota de agua debe deslizarse por un tobogán gigante esquivando la contaminación de charcos de aceite.",
     mechanics:
@@ -102,12 +129,17 @@ const PROJECTS = [
   {
     id: "5",
     title: "ClickBox",
-    tagline: "Un desafío árcade de reflejos rápidos y precisión con el ratón.",
+    tagline:
+      "Un desafío árcade de reflejos rápidos y precisión con el ratón.",
     year: "2026",
     status: "Prototipo",
     language: "C#",
     engine: "Unity",
     tags: ["Arcade", "Casual", "Clicker"],
+    profile: "gamedev",
+    role: "",
+    teamSize: "Individual",
+    duration: "1 dia",
     theme:
       "Juego 3D de clicker de eliminación de objetos.",
     mechanics:
@@ -129,12 +161,17 @@ const PROJECTS = [
   {
     id: "4",
     title: "SoccerChallenge",
-    tagline: "Defiende tu portería en un caótico juego de colisiones por oleadas basado en físicas.",
+    tagline:
+      "Defiende tu portería en un caótico juego de colisiones por oleadas basado en físicas.",
     year: "2026",
     status: "Prototipo",
     language: "C#",
     engine: "Unity",
     tags: ["Acción", "Arcade", "Físicas"],
+    profile: "gamedev",
+    role: "",
+    teamSize: "Individual",
+    duration: "1 dia",
     theme:
       "Simulación deportiva arcade en un entorno tridimensional simplificado, donde un balón principal debe defender su portería impidiendo el paso de balones enemigos.",
     mechanics:
@@ -152,7 +189,6 @@ const PROJECTS = [
       devlog: "",
     },
   },
-
   {
     id: "3",
     title: "RunWorker",
@@ -162,6 +198,10 @@ const PROJECTS = [
     language: "C#",
     engine: "Unity",
     tags: ["Arcade"],
+    profile: "gamedev",
+    role: "",
+    teamSize: "Individual",
+    duration: "1 dia",
     theme:
       "Un personaje que debe atravesar una ciudad, esquivando obstáculos.",
     mechanics:
@@ -180,17 +220,27 @@ const PROJECTS = [
       devlog: "",
     },
   },
-
   {
     id: "2",
     title: "Astro Bank Backend",
-    tagline: "Backend para banca digital con cuentas, transferencias y reglas de negocio.",
+    tagline:
+      "Backend para banca digital con cuentas, transferencias y reglas de negocio.",
     year: "2026",
     status: "Prototipo",
     language: "Java",
     engine: "MySQL + JDBC",
-    tags: ["Backend", "clean Architecture/Hexagonal", "Singleton", "Repository", "Puertos y Adaptadores"],
+    tags: [
+      "Backend",
+      "Clean Architecture/Hexagonal",
+      "Singleton",
+      "Repository",
+      "Puertos y Adaptadores",
+    ],
+    profile: "software",
     category: "Backend",
+    role: "Desarrollador backend",
+    teamSize: "Equipo (4 personas)",
+    duration: "2 meses",
     theme:
       "Plataforma de banca digital académica diseñada para gestionar cuentas, movimientos y transferencias de forma segura y escalable.",
     mechanics:
@@ -209,23 +259,29 @@ const PROJECTS = [
       devlog: "",
     },
   },
-
   {
     id: "1",
     title: "Facturación Digital API",
-    tagline: "Backend REST para gestión de facturación, clientes y planes con autenticación JWT.",
+    tagline:
+      "Backend REST para gestión de facturación, clientes y planes con autenticación JWT.",
     year: "2026",
     status: "Desarrollo",
     language: "Python",
     engine: "FastAPI + SQLModel + SQLite",
-    tags: ["Backend",
+    tags: [
+      "Backend",
       "REST API",
       "JWT Authentication",
       "SQLModel/ORM",
       "Dependency Injection",
       "OAuth2",
-      "Role-Based Access Control"],
+      "Role-Based Access Control",
+    ],
+    profile: "software",
     category: "Backend",
+    role: "Desarrollador backend",
+    teamSize: "Individual",
+    duration: "2 semanas",
     theme:
       "Plataforma de facturación digital académica diseñada para gestionar clientes, facturas, transacciones y planes de forma segura y escalable.",
     mechanics:
@@ -243,5 +299,4 @@ const PROJECTS = [
       devlog: "",
     },
   },
-
 ];
