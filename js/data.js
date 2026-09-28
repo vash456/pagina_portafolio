@@ -81,7 +81,11 @@ const PROJECTS = [
     mechanics:
       "Movimiento del personaje mediante teclado o arrastre del mouse, generación continua de palabras positivas y negativas, sistema de barra de esperanza, colisiones con objetos del juego y flujo de menú con pausa, victoria, derrota y reinicio.",
     challenge:
-      "Desarrolle en Unity el control de movimiento del personaje con Input System permitiendo usar el teclado, el mouse o controles de gamepad. Implemente la logica de spawn de prefabs y el movimiento de las palabras que aparecen en pantalla, ademas de la logica para aparezcan distintas palabras. Desarrolle el sistema de colisiones para distinguir de las palabras buenas y malas, ademas de los efectos sonoros y visuales al colisionar. Colabore en los ajustes de la interfaz de usuario y la integración de los elementos en el escenario, así como funcionalidades para el funcionamiento del juego en general.",
+      "Desarrollé en Unity el control de movimiento del personaje con Input System, permitiendo su uso con teclado, mouse o control de gamepad.<br>" +
+      "Implementé la lógica de spawn de prefabs y el movimiento de las palabras que aparecen en pantalla, junto con la lógica para que aparezcan distintas palabras.<br>" +
+      "Desarrollé el sistema de colisiones para distinguir entre palabras buenas y malas, incluyendo los efectos sonoros y visuales al colisionar.<br>" +
+      "Colaboré en los ajustes de la interfaz de usuario y en la integración de los elementos dentro del escenario.<br>" +
+      "Contribuí en funcionalidades generales para el correcto funcionamiento del juego.",
     cover: "assets/img/projects/deepre_1.jpg",
     screenshots: [
       "assets/img/projects/deepre_1.jpg",
@@ -113,7 +117,11 @@ const PROJECTS = [
     mechanics:
       "Movimiento tridimensional en el tobogán utilizando las teclas WASD, recolección de patitos de hule flotantes para acumular puntos, evasión de obstáculos de aceite y sistema de flujo de juego con pantallas de Game Over y reinicio.",
     challenge:
-      "Primer juego desarrollado para una Game Jam, donde trabaje en equipo con otros desarrolladores. Modele el coleccionable de flotador con forma de pato y el tobogan como escenario, con sus respectivas texturas y box colliders, ademas de realizar la programcion para dar el efecto de movimiento infinito. Colabore en el movimiento del personaje y la integracion de los elementos en escenario, asi como funcionalidades para el funcionamiento del juego en general.",
+      "Primer juego desarrollado en una Game Jam, en colaboración con un equipo de desarrolladores.<br>" +
+      "Modelé el coleccionable en forma de pato flotador y el tobogán como escenario principal en Blender, incluyendo texturizado y box colliders.<br>" +
+      "Programé el efecto de movimiento infinito del escenario.<br>" +
+      "Colaboré en el movimiento del personaje y en la integración de los elementos dentro del escenario.<br>" +
+      "Contribuí en funcionalidades generales para el correcto funcionamiento del juego.",
     cover: "assets/img/projects/oilbeback_1.png",
     screenshots: [
       "assets/img/projects/oilbeback_1.png",
