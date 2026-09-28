@@ -94,6 +94,7 @@ function setView(name) {
   window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
   requestAnimationFrame(moveIndicator);
   requestAnimationFrame(revealObserveAll);
+  requestAnimationFrame(initGoatCounterSectionObserver);
 }
 
 menuItems.forEach(function (el) {
@@ -304,9 +305,30 @@ function linkRow(links, project) {
   var cat = (project.category || "").toLowerCase();
   if (cat.includes("backend") || cat.includes("software")) playLabel = "▶ Demo / Enlace";
 
-  if (links.play) items.push('<a class="btn btn-primary" href="' + links.play + '" target="_blank" rel="noopener">' + playLabel + '</a>');
-  if (links.repo) items.push('<a class="btn btn-ghost" href="' + links.repo + '" target="_blank" rel="noopener">Código fuente</a>');
-  if (links.devlog) items.push('<a class="btn btn-ghost" href="' + links.devlog + '" target="_blank" rel="noopener">Devlog</a>');
+  if (links.play) {
+    items.push(
+      '<a class="btn btn-primary" href="' + links.play + '" target="_blank" rel="noopener"' +
+      ' data-goatcounter-click="proyecto-demo-' + project.id + '"' +
+      ' data-goatcounter-title="Proyecto Demo: ' + project.title + '">' +
+      playLabel + '</a>'
+    );
+  }
+  if (links.repo) {
+    items.push(
+      '<a class="btn btn-ghost" href="' + links.repo + '" target="_blank" rel="noopener"' +
+      ' data-goatcounter-click="proyecto-repo-' + project.id + '"' +
+      ' data-goatcounter-title="Proyecto Repositorio: ' + project.title + '">' +
+      'Código fuente</a>'
+    );
+  }
+  if (links.devlog) {
+    items.push(
+      '<a class="btn btn-ghost" href="' + links.devlog + '" target="_blank" rel="noopener"' +
+      ' data-goatcounter-click="proyecto-devlog-' + project.id + '"' +
+      ' data-goatcounter-title="Proyecto Devlog: ' + project.title + '">' +
+      'Devlog</a>'
+    );
+  }
   return items.length ? '<div class="modal-links">' + items.join("") + '</div>' : "";
 }
 
@@ -383,6 +405,11 @@ function openModal(id) {
       '</div>' +
       linkRow(p.links, p) +
     '</div>';
+
+  // Si GoatCounter está cargado, vincular los eventos de clic a los nuevos enlaces inyectados
+  if (window.goatcounter && typeof window.goatcounter.bind_events === "function") {
+    window.goatcounter.bind_events();
+  }
 
   var mainImg = document.getElementById("modalMainImg");
   document.querySelectorAll("#modalThumbs button").forEach(function (btn) {
@@ -1113,6 +1140,63 @@ if (cvTabWeb) cvTabWeb.addEventListener("click", function() { setCvTab("web"); }
 if (cvTabPdf) cvTabPdf.addEventListener("click", function() { setCvTab("pdf"); });
 
 /* =========================================================
+   GOATCOUNTER: SEGUIMIENTO DE SECCIONES CON INTERSECTIONOBSERVER
+   ========================================================= */
+let goatCounterObserver = null;
+const trackedSections = new Set();
+
+function initGoatCounterSectionObserver() {
+  if (!("IntersectionObserver" in window)) return;
+
+  if (!goatCounterObserver) {
+    goatCounterObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        // Se considera vista si al menos el 50% de la sección está visible
+        var isHalfVisible = entry.intersectionRatio >= 0.5;
+
+        // Soporte para secciones altas en móviles: cubren al menos el 50% del alto de la ventana
+        var isTallElement = entry.boundingClientRect.height > window.innerHeight;
+        var coversHalfScreen = isTallElement && (entry.intersectionRect.height / window.innerHeight) >= 0.5;
+
+        if (entry.isIntersecting && (isHalfVisible || coversHalfScreen)) {
+          var el = entry.target;
+          var sectionPath = el.getAttribute("data-track-section") || el.id;
+          var sectionTitle = el.getAttribute("data-track-title") || ("Sección: " + sectionPath);
+
+          // Registrar solo una vez por visita
+          if (!trackedSections.has(sectionPath)) {
+            trackedSections.add(sectionPath);
+
+            // Comprobación de seguridad: verificar que window.goatcounter existe
+            // antes de llamarlo, protegiendo de fallos si un adblocker bloqueó el script
+            if (window.goatcounter && typeof window.goatcounter.count === "function") {
+              window.goatcounter.count({
+                path: sectionPath,
+                title: sectionTitle,
+                event: true
+              });
+            }
+          }
+
+          // Dejar de observar este elemento para registrarlo una única vez
+          goatCounterObserver.unobserve(el);
+        }
+      });
+    }, {
+      threshold: [0.25, 0.5] // Permite disparar al 50% y cubre elementos altos en pantallas pequeñas
+    });
+  }
+
+  // Observar todas las secciones marcadas que no hayan sido registradas aún
+  document.querySelectorAll("[data-track-section]").forEach(function (sec) {
+    var path = sec.getAttribute("data-track-section") || sec.id;
+    if (!trackedSections.has(path)) {
+      goatCounterObserver.observe(sec);
+    }
+  });
+}
+
+/* =========================================================
    INIT APP — Called after profile selection
    ========================================================= */
 function initApp(profileKey) {
@@ -1124,6 +1208,7 @@ function initApp(profileKey) {
   renderCards();
   moveIndicator();
   revealObserveAll();
+  initGoatCounterSectionObserver();
 
   // Comprobar si hay una vista específica en el hash (ej: #about, #cv)
   var rawHash = (window.location.hash || "").replace(/^#/, "").toLowerCase();
@@ -1138,4 +1223,11 @@ function initApp(profileKey) {
 
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+}
+
+// Iniciar observador de secciones al cargar la página (detecta pantalla inicial si aplica)
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initGoatCounterSectionObserver);
+} else {
+  initGoatCounterSectionObserver();
 }

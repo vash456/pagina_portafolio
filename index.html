@@ -38,7 +38,7 @@
 <canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
 
 <!-- ============ PROFILE SELECTOR (entry screen) ============ -->
-<div class="profile-selector" id="profileSelector">
+<div class="profile-selector" id="profileSelector" data-track-section="seccion-selector-perfil" data-track-title="Sección: Selector de Perfil Inicial">
   <div class="selector-header">
     <h1 class="selector-name"><span class="brand-mark">▸</span> Darlin Estrada Patiño</h1>
     <p class="selector-subtitle">// selecciona el perfil que te interesa</p>
@@ -46,7 +46,7 @@
 
   <div class="selector-cards">
     <!-- Software -->
-    <div class="profile-card profile-card--software" data-profile="software" tabindex="0" role="button" aria-label="Ver perfil de Desarrollador de Software">
+    <div class="profile-card profile-card--software" data-profile="software" tabindex="0" role="button" aria-label="Ver perfil de Desarrollador de Software" data-goatcounter-click="selector-perfil-software" data-goatcounter-title="Elegir Perfil: Desarrollador de Software">
       <svg class="profile-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="4" y="6" width="40" height="32" rx="4"/>
         <line x1="4" y1="42" x2="44" y2="42"/>
@@ -66,7 +66,7 @@
     </div>
 
     <!-- Game Dev -->
-    <div class="profile-card profile-card--gamedev" data-profile="gamedev" tabindex="0" role="button" aria-label="Ver perfil de Desarrollador de Videojuegos Unity">
+    <div class="profile-card profile-card--gamedev" data-profile="gamedev" tabindex="0" role="button" aria-label="Ver perfil de Desarrollador de Videojuegos Unity" data-goatcounter-click="selector-perfil-gamedev" data-goatcounter-title="Elegir Perfil: Game Developer Unity">
       <svg class="profile-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="2" y="12" width="44" height="26" rx="8"/>
         <circle cx="15" cy="25" r="5"/>
@@ -130,13 +130,13 @@
 
   <!-- ============ VISTA: PORTAFOLIO ============ -->
   <section class="view is-active" id="view-portfolio" data-view-panel="portfolio">
-    <div class="hero">
+    <div class="hero" data-track-section="seccion-hero" data-track-title="Sección: Presentación Hero">
       <div class="profile-links reveal">
         <div class="social-links">
-          <a class="social-link social-link-linkedin" href="https://linkedin.com/in/darlin-estrada" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="social-link social-link-github" href="https://github.com/vash456" target="_blank" rel="noopener">GitHub</a>
-          <a class="social-link social-link-itch gamedev-only" href="https://vashgames.itch.io" target="_blank" rel="noopener">itch.io</a>
-          <button class="social-link social-link-email" id="heroEmailBtn" type="button" aria-label="Copiar correo al portapapeles" title="Haz clic para copiar el correo">Correo</button>
+          <a class="social-link social-link-linkedin" href="https://linkedin.com/in/darlin-estrada" target="_blank" rel="noopener" data-goatcounter-click="social-linkedin-hero" data-goatcounter-title="LinkedIn (Hero)">LinkedIn</a>
+          <a class="social-link social-link-github" href="https://github.com/vash456" target="_blank" rel="noopener" data-goatcounter-click="social-github-hero" data-goatcounter-title="GitHub (Hero)">GitHub</a>
+          <a class="social-link social-link-itch gamedev-only" href="https://vashgames.itch.io" target="_blank" rel="noopener" data-goatcounter-click="social-itch-hero" data-goatcounter-title="itch.io (Hero)">itch.io</a>
+          <button class="social-link social-link-email" id="heroEmailBtn" type="button" aria-label="Copiar correo al portapapeles" title="Haz clic para copiar el correo" data-goatcounter-click="contacto-email-hero" data-goatcounter-title="Contacto: Copiar correo (Hero)">Correo</button>
         </div>
       </div>
       <div class="hero-inner">
@@ -156,7 +156,7 @@
       </div>
     </div>
 
-    <div class="section-head reveal" id="portfolio-grid">
+    <div class="section-head reveal" id="portfolio-grid" data-track-section="seccion-proyectos" data-track-title="Sección: Galería de Proyectos">
       <h2 id="portfolioHeading">Portafolio</h2>
       <p id="portfolioDescription">Cada proyecto incluye tema, mecánicas, stack técnico y el problema de diseño o programación que buscaba resolver.</p>
     </div>
@@ -171,7 +171,7 @@
   </section>
 
   <!-- ============ VISTA: ACERCA DE MÍ ============ -->
-  <section class="view" id="view-about" data-view-panel="about">
+  <section class="view" id="view-about" data-view-panel="about" data-track-section="seccion-acerca-de-mi" data-track-title="Sección: Acerca de mí">
     <div class="page-head">
       <p class="eyebrow" id="aboutEyebrow">// jugador desde antes de saber leer</p>
       <h1 class="hero-title">Acerca de mí</h1>
@@ -203,18 +203,18 @@
   </section>
 
   <!-- ============ VISTA: CV ============ -->
-  <section class="view" id="view-cv" data-view-panel="cv">
+  <section class="view" id="view-cv" data-view-panel="cv" data-track-section="seccion-cv" data-track-title="Sección: Curriculum Vitae">
     <div class="page-head page-head-split">
       <div>
         <p class="eyebrow">// resumen académico y profesional</p>
         <h1 class="hero-title" id="cvHeadingTitle">Curriculum Vitae</h1>
       </div>
       <div class="cv-head-actions">
-        <button class="btn btn-ghost" id="cvOpenModalBtn" type="button" aria-label="Previsualizar CV en pantalla completa">
+        <button class="btn btn-ghost" id="cvOpenModalBtn" type="button" aria-label="Previsualizar CV en pantalla completa" data-goatcounter-click="cv-previsualizar-modal" data-goatcounter-title="Previsualizar CV (Modal)">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           Previsualizar PDF
         </button>
-        <a class="btn btn-primary" id="cvDownloadBtn" href="assets/cv/CV-Darlin-Software.pdf" download>
+        <a class="btn btn-primary" id="cvDownloadBtn" href="assets/cv/CV-Darlin-Software.pdf" download data-goatcounter-click="cv-descargar-pdf" data-goatcounter-title="Descargar CV en PDF (Botón Principal)">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Descargar CV en PDF
         </a>
@@ -241,7 +241,7 @@
           <span class="cv-pdf-name" id="cvPdfFileName">CV-Darlin-Software.pdf</span>
         </div>
         <div class="cv-pdf-actions">
-          <a class="btn btn-ghost btn-sm" id="cvPdfNewTabBtn" href="#" target="_blank" rel="noopener" title="Abrir en pestaña nueva">
+          <a class="btn btn-ghost btn-sm" id="cvPdfNewTabBtn" href="#" target="_blank" rel="noopener" title="Abrir en pestaña nueva" data-goatcounter-click="cv-abrir-pestana-visor" data-goatcounter-title="Abrir CV en Pestaña (Visor)">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Abrir en pestaña
           </a>
@@ -255,7 +255,7 @@
         <iframe class="cv-pdf-frame" id="cvEmbeddedIframe" src="" title="Visualizador de Curriculum Vitae"></iframe>
         <div class="cv-pdf-fallback" id="cvPdfFallback">
           <p>¿Prefieres abrir el documento directamente?</p>
-          <a class="btn btn-primary btn-sm" id="cvFallbackDownloadBtn" href="" target="_blank" rel="noopener">
+          <a class="btn btn-primary btn-sm" id="cvFallbackDownloadBtn" href="" target="_blank" rel="noopener" data-goatcounter-click="cv-abrir-pdf-fallback" data-goatcounter-title="Abrir CV en PDF (Fallback Visor)">
             Abrir documento PDF
           </a>
         </div>
@@ -369,11 +369,11 @@
           <h3 class="cv-side-title">Contacto</h3>
           <ul class="contact-list">
             <li>
-              <button class="contact-link contact-link-email" id="contactEmailBtn" type="button" aria-label="Copiar correo al portapapeles" title="Haz clic para copiar el correo">darlin.estrada456@gmail.com</button>
+              <button class="contact-link contact-link-email" id="contactEmailBtn" type="button" aria-label="Copiar correo al portapapeles" title="Haz clic para copiar el correo" data-goatcounter-click="contacto-email-cv" data-goatcounter-title="Contacto: Copiar correo (CV Sidebar)">darlin.estrada456@gmail.com</button>
             </li>
-            <li><a href="https://github.com/vash456" target="_blank" rel="noopener" class="contact-link contact-link-github" id="cvGithubLink">github.com/vash456</a></li>
-            <li class="gamedev-only"><a href="https://vashgames.itch.io/" target="_blank" rel="noopener" class="contact-link contact-link-itch" id="itchLink">https://vashgames.itch.io/</a></li>
-            <li><a href="https://linkedin.com/in/darlin-estrada" target="_blank" rel="noopener" class="contact-link contact-link-linkedin" id="linkedinLink">linkedin.com/in/darlin-estrada</a></li>
+            <li><a href="https://github.com/vash456" target="_blank" rel="noopener" class="contact-link contact-link-github" id="cvGithubLink" data-goatcounter-click="social-github-cv" data-goatcounter-title="GitHub (CV Sidebar)">github.com/vash456</a></li>
+            <li class="gamedev-only"><a href="https://vashgames.itch.io/" target="_blank" rel="noopener" class="contact-link contact-link-itch" id="itchLink" data-goatcounter-click="social-itch-cv" data-goatcounter-title="itch.io (CV Sidebar)">https://vashgames.itch.io/</a></li>
+            <li><a href="https://linkedin.com/in/darlin-estrada" target="_blank" rel="noopener" class="contact-link contact-link-linkedin" id="linkedinLink" data-goatcounter-click="social-linkedin-cv" data-goatcounter-title="LinkedIn (CV Sidebar)">linkedin.com/in/darlin-estrada</a></li>
           </ul>
         </div>
       </aside>
@@ -382,13 +382,13 @@
 
 </main>
 
-<footer class="site-footer">
+<footer class="site-footer" data-track-section="seccion-footer" data-track-title="Sección: Pie de página">
   <p>© <span id="year"></span> <span id="footerOwnerName">Darlin Estrada Patiño</span>. Hecho con HTML, CSS y JS — alojado en GitHub Pages.</p>
   <div class="footer-links">
-    <a href="https://linkedin.com/in/darlin-estrada" class="footer-link footer-link-linkedin" target="_blank" rel="noopener" id="footerLinkedinLink">LinkedIn</a>
-    <a href="https://github.com/vash456" class="footer-link footer-link-github" target="_blank" rel="noopener" id="footerGithubLink">GitHub</a>
-    <a href="https://vashgames.itch.io/" class="footer-link footer-link-itch gamedev-only" target="_blank" rel="noopener" id="footerItchLink">itch.io</a>
-    <button class="footer-link footer-link-email" id="footerEmailBtn" type="button" aria-label="Copiar correo al portapapeles" title="Haz clic para copiar el correo">Correo</button>
+    <a href="https://linkedin.com/in/darlin-estrada" class="footer-link footer-link-linkedin" target="_blank" rel="noopener" id="footerLinkedinLink" data-goatcounter-click="social-linkedin-footer" data-goatcounter-title="LinkedIn (Footer)">LinkedIn</a>
+    <a href="https://github.com/vash456" class="footer-link footer-link-github" target="_blank" rel="noopener" id="footerGithubLink" data-goatcounter-click="social-github-footer" data-goatcounter-title="GitHub (Footer)">GitHub</a>
+    <a href="https://vashgames.itch.io/" class="footer-link footer-link-itch gamedev-only" target="_blank" rel="noopener" id="footerItchLink" data-goatcounter-click="social-itch-footer" data-goatcounter-title="itch.io (Footer)">itch.io</a>
+    <button class="footer-link footer-link-email" id="footerEmailBtn" type="button" aria-label="Copiar correo al portapapeles" title="Haz clic para copiar el correo" data-goatcounter-click="contacto-email-footer" data-goatcounter-title="Contacto: Copiar correo (Footer)">Correo</button>
   </div>
 </footer>
 
@@ -438,11 +438,11 @@
         <h2 id="cvModalTitle" class="cv-modal-title">Curriculum Vitae</h2>
       </div>
       <div class="cv-modal-controls">
-        <a class="btn btn-ghost btn-sm" id="cvModalNewTabBtn" href="#" target="_blank" rel="noopener" title="Abrir en pestaña nueva">
+        <a class="btn btn-ghost btn-sm" id="cvModalNewTabBtn" href="#" target="_blank" rel="noopener" title="Abrir en pestaña nueva" data-goatcounter-click="cv-abrir-pestana-modal" data-goatcounter-title="Abrir CV en Pestaña (Modal)">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           Nueva pestaña
         </a>
-        <a class="btn btn-primary btn-sm" id="cvModalDownloadBtn" href="#" download title="Descargar PDF">
+        <a class="btn btn-primary btn-sm" id="cvModalDownloadBtn" href="#" download title="Descargar PDF" data-goatcounter-click="cv-descargar-modal" data-goatcounter-title="Descargar CV en PDF (Modal)">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Descargar PDF
         </a>
@@ -459,5 +459,8 @@
 <script src="js/profiles.js"></script>
 <script src="js/script.js"></script>
 <script src="js/profile-selector.js"></script>
+
+<!-- GoatCounter: Analítica web ligera, sin cookies y respetuosa con la privacidad -->
+<script data-goatcounter="https://vash456.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
